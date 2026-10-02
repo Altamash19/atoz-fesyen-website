@@ -1,45 +1,48 @@
-// Pre-launch sanity checks for the catalogue and business details.
-// Run with: npm run check:data   (no dependencies needed)
-import { readFileSync, existsSync } from "node:fs";
+// Pre-launch sanity checks for the catalogue (runs in CI before every deploy).
+// Usage: npm run check:data   (no dependencies needed)
+import { readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const catalog = readFileSync(join(root, "src/data/catalog.ts"), "utf8");
+const manifest = readFileSync(join(root, "src/data/image-manifest.ts"), "utf8");
 const siteCfg = readFileSync(join(root, "src/config/site.ts"), "utf8");
 
 const errors = [];
-const warnings = [];
-
+const imageKeys = new Set([...manifest.matchAll(/^\s+"([^"]+)": \{ src:/gm)].map((m) => m[1]));
 const collectionIds = [...catalog.matchAll(/^\s+id: "([a-z0-9-]+)",\n\s+category:/gm)].map((m) => m[1]);
-const products = [...catalog.matchAll(/\{ slug: "([^"]+)", collection: "([^"]+)"(.*)\},?$/gm)].map((m) => ({
-  slug: m[1],
-  collection: m[2],
-  rest: m[3],
-}));
+const productsSrc = catalog.slice(catalog.indexOf("export const products"));
+const blocks = productsSrc.split(/\n  \{\n/).slice(1);
 
-if (!products.length) errors.push("No products found — did the catalog format change?");
-
-const seen = new Set();
-for (const p of products) {
-  if (seen.has(p.slug)) errors.push(`Duplicate slug: ${p.slug}`);
-  seen.add(p.slug);
-  if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(p.slug)) errors.push(`Slug not URL-safe: ${p.slug}`);
-  if (!collectionIds.includes(p.collection)) errors.push(`${p.slug}: unknown collection "${p.collection}"`);
-  for (const img of p.rest.matchAll(/"(\/products\/[^"]+)"/g)) {
-    if (!existsSync(join(root, "public", img[1]))) errors.push(`${p.slug}: image not found public${img[1]}`);
+const slugs = new Set();
+const codes = new Set();
+for (const b of blocks) {
+  const slug = b.match(/slug: "([^"]+)"/)?.[1];
+  if (!slug) continue;
+  const code = b.match(/code: "([^"]+)"/)?.[1];
+  const collection = b.match(/collection: "([^"]+)"/)?.[1];
+  if (slugs.has(slug)) errors.push(`Duplicate slug: ${slug}`);
+  slugs.add(slug);
+  if (code) {
+    if (codes.has(code)) errors.push(`Duplicate design code: ${code}`);
+    codes.add(code);
   }
-  if (!/images:/.test(p.rest)) warnings.push(`${p.slug}: no photo yet`);
+  if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) errors.push(`Slug not URL-safe: ${slug}`);
+  if (!collectionIds.includes(collection)) errors.push(`${slug}: unknown collection "${collection}"`);
+  const imgs = [...(b.match(/images: \[([^\]]*)\]/)?.[1] ?? "").matchAll(/"([^"]+)"/g)].map((m) => m[1]);
+  const shadeImgs = [...b.matchAll(/image: "([^"]+)"/g)].map((m) => m[1]);
+  for (const k of [...imgs, ...shadeImgs]) if (!imageKeys.has(k)) errors.push(`${slug}: image "${k}" missing — add it to public/products and run npm run images`);
+  if (!imgs.length && !shadeImgs.length) errors.push(`${slug}: no photo`);
 }
+for (const k of ["hero-kurta", "hero-jubah-green", "hero-kurung-teal", "fabric-colour-card", "about-rack", "altamash", "contact-rack"])
+  if (!imageKeys.has(k)) errors.push(`Site image "${k}" missing from public/images`);
 
-const todos = [...siteCfg.matchAll(/^\s+(\w+):[^\n]*TODO/gm)].map((m) => m[1]);
-if (/whatsapp: "60000000000"/.test(siteCfg)) todos.push("whatsapp");
-if (todos.length) errors.push(`src/config/site.ts still has placeholders: ${[...new Set(todos)].join(", ")}`);
+if (/TODO/.test(siteCfg)) errors.push("src/config/site.ts still contains TODO placeholders");
 
-console.log(`Products: ${products.length}, collections: ${collectionIds.length}`);
-if (warnings.length) console.log(`\n⚠ ${warnings.length} products without photos (placeholder art will show).`);
+console.log(`Products: ${slugs.size} (${codes.size} with design codes), collections: ${collectionIds.length}, images: ${imageKeys.size}`);
 if (errors.length) {
   console.error(`\n✖ ${errors.length} problem(s):\n - ` + errors.join("\n - "));
   process.exit(1);
 }
-console.log("\n✔ Catalogue and business details look ready for launch.");
+console.log("✔ Catalogue looks good.");

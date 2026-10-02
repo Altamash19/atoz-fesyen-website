@@ -14,7 +14,7 @@ export function LanguageSwitcher({ lang, className = "" }: { lang: Locale; class
       {locales.map((l) => (
         <Link
           key={l}
-          href={`/${l}${rest}`}
+          href={`/${l}${rest}`.replace(/\/?$/, "/")}
           hrefLang={l}
           lang={l}
           aria-current={l === lang ? "true" : undefined}

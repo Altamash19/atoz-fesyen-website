@@ -28,7 +28,7 @@ export function Footer({ lang }: { lang: Locale }) {
             <ul className="mt-4 space-y-2.5 text-sm">
               {categories.map((c) => (
                 <li key={c.id}>
-                  <Link href={`/${lang}/category/${c.id}`} className="hover:text-white hover:underline">
+                  <Link href={`/${lang}/category/${c.id}/`} className="hover:text-white hover:underline">
                     {c.name[lang]}
                   </Link>
                 </li>
@@ -38,18 +38,23 @@ export function Footer({ lang }: { lang: Locale }) {
           <div>
             <h2 className="font-sans text-sm font-semibold tracking-wider text-gold-soft uppercase">{t.footer.explore}</h2>
             <ul className="mt-4 space-y-2.5 text-sm">
-              <li><Link href={`/${lang}/wholesale`} className="hover:text-white hover:underline">{t.nav.wholesale}</Link></li>
-              <li><Link href={`/${lang}/about`} className="hover:text-white hover:underline">{t.nav.about}</Link></li>
-              <li><Link href={`/${lang}/contact`} className="hover:text-white hover:underline">{t.nav.contact}</Link></li>
+              <li><Link href={`/${lang}/wholesale/`} className="hover:text-white hover:underline">{t.nav.wholesale}</Link></li>
+              <li><Link href={`/${lang}/about/`} className="hover:text-white hover:underline">{t.nav.about}</Link></li>
+              <li><Link href={`/${lang}/contact/`} className="hover:text-white hover:underline">{t.nav.contact}</Link></li>
             </ul>
           </div>
         </div>
 
-        <div className="md:col-span-3">
+        <div className="md:col-span-3 md:min-w-0">
           <h2 className="font-sans text-sm font-semibold tracking-wider text-gold-soft uppercase">{t.footer.getInTouch}</h2>
           <ul className="mt-4 space-y-3 text-sm">
             <li className="flex gap-2.5"><PinIcon className="mt-0.5 shrink-0 text-gold-soft" width={18} height={18} />
-              <span>{site.address.street}, {site.address.postcode} {site.address.city}, {site.address.state}</span>
+              <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                {site.address.unit}, {site.address.building}, {site.address.street}, {site.address.postcode} {site.address.city}
+              </a>
+            </li>
+            <li className="flex gap-2.5"><WhatsAppIcon className="mt-0.5 shrink-0 text-gold-soft" width={18} height={18} />
+              <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="hover:underline">{site.whatsappDisplay}</a>
             </li>
             <li className="flex gap-2.5"><MailIcon className="mt-0.5 shrink-0 text-gold-soft" width={18} height={18} />
               <a href={`mailto:${site.email}`} className="break-all hover:underline">{site.email}</a>
@@ -63,7 +68,11 @@ export function Footer({ lang }: { lang: Locale }) {
       <div className="border-t border-white/10">
         <div className="container-page flex flex-col gap-1 pt-5 pb-24 text-xs text-white/55 sm:flex-row sm:justify-between lg:pb-5">
           <p>© {year} {site.legalName} ({site.registrationNo}). {t.footer.rights}</p>
-          <p>atozfesyen.com</p>
+          <p className="flex gap-4">
+            <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-white">Instagram</a>
+            <a href={site.social.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-white">Facebook</a>
+            <a href={site.social.tiktok} target="_blank" rel="noopener noreferrer" className="hover:text-white">TikTok</a>
+          </p>
         </div>
       </div>
     </footer>

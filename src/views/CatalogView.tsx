@@ -14,8 +14,8 @@ export function CatalogView({ lang, category }: { lang: Locale; category?: Categ
     <div className="container-page py-10 md:py-14">
       <Breadcrumbs
         items={[
-          { label: t.nav.home, href: `/${lang}` },
-          ...(cat ? [{ label: t.nav.products, href: `/${lang}/products` }, { label: cat.name[lang] }] : [{ label: t.nav.products }]),
+          { label: t.nav.home, href: `/${lang}/` },
+          ...(cat ? [{ label: t.nav.products, href: `/${lang}/products/` }, { label: cat.name[lang] }] : [{ label: t.nav.products }]),
         ]}
       />
       <header className="mt-5 max-w-3xl">

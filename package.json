@@ -5,9 +5,10 @@
   "description": "Bilingual (EN/BM) wholesale catalogue website for A TO Z Fesyen Baru Sdn Bhd",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "build": "next build && node scripts/postbuild.mjs",
+    "preview": "npx serve out",
     "typecheck": "tsc --noEmit",
+    "images": "node scripts/gen-image-manifest.mjs",
     "check:data": "node scripts/check-data.mjs"
   },
   "dependencies": {

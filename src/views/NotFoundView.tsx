@@ -11,7 +11,7 @@ export function NotFoundView({ lang }: { lang: Locale }) {
       <p className="eyebrow mt-6">404</p>
       <h1 className="mt-3 text-4xl font-semibold text-brand-900">{t.notFound.title}</h1>
       <p className="mt-3 max-w-md text-muted">{t.notFound.text}</p>
-      <Link href={`/${lang}/products`} className="btn btn-primary mt-8">
+      <Link href={`/${lang}/products/`} className="btn btn-primary mt-8">
         {t.notFound.back}
       </Link>
     </div>

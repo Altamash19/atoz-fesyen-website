@@ -9,7 +9,7 @@
  * Usage: NODE_PATH=<dir with react, react-dom, esbuild, tailwindcss> node tests/build-preview.mjs
  */
 import { createRequire } from "node:module";
-import { mkdirSync, symlinkSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { copyFileSync, cpSync, mkdirSync, symlinkSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -38,7 +38,7 @@ const common = {
   },
   loader: { ".css": "empty" },
   logLevel: "error",
-  define: { "process.env.NEXT_PUBLIC_SITE_URL": "undefined" },
+  define: { "process.env.NEXT_PUBLIC_SITE_URL": "undefined", "process.env.NEXT_PUBLIC_BASE_PATH": "undefined" },
 };
 
 // 1. Bundles
@@ -99,7 +99,7 @@ for (const { lang } of server.langParams()) {
   pages.push({ path: `/${lang}/wholesale`, route: "wholesale", params: { lang } });
   pages.push({ path: `/${lang}/about`, route: "about", params: { lang } });
   pages.push({ path: `/${lang}/contact`, route: "contact", params: { lang } });
-  pages.push({ path: `/${lang}/__404`, route: "notFound", params: { lang } });
+  pages.push({ path: `/${lang}/notfound`, route: "notfound", params: { lang } });
 }
 for (const p of routes.category.generateStaticParams()) pages.push({ path: `/${p.lang}/category/${p.category}`, route: "category", params: p });
 for (const p of productParams) pages.push({ path: `/${p.lang}/products/${p.slug}`, route: "product", params: p });
@@ -108,7 +108,7 @@ const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replac
 const report = [];
 
 for (const pg of pages) {
-  globalThis.__PATHNAME__ = pg.path;
+  globalThis.__PATHNAME__ = pg.path + "/";
   const params = Promise.resolve(pg.params);
   const mod = routes[pg.route];
   let page;
@@ -139,14 +139,14 @@ for (const pg of pages) {
     `<script type="module" src="/_assets/app.js"></script>`,
   ].join("");
   const doc = "<!DOCTYPE html>" + html.replace(/^(<html[^>]*>)/, `$1<head>${head}</head>`);
-  const file = pg.route === "notFound" ? join(site, `404-${pg.params.lang}.html`) : join(site, pg.path, "index.html");
+  const file = join(site, pg.path, "index.html");
   mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, doc);
   report.push({ path: pg.path, title, bytes: doc.length });
 }
 
 // Verify that unknown slugs / categories really 404 (notFound() is thrown)
-for (const [route, params] of [["product", { lang: "en", slug: "does-not-exist" }], ["category", { lang: "en", category: "shoes" }], ["catchAll", { lang: "en" }]]) {
+for (const [route, params] of [["product", { lang: "en", slug: "does-not-exist" }], ["category", { lang: "en", category: "shoes" }]]) {
   try {
     await routes[route].default({ params: Promise.resolve(params) });
     throw new Error(`${route} did not 404 for ${JSON.stringify(params)}`);
@@ -154,6 +154,10 @@ for (const [route, params] of [["product", { lang: "en", slug: "does-not-exist" 
     if (e.digest !== "NEXT_NOT_FOUND") throw e;
   }
 }
+
+// public/ assets + 404 pages (mirrors scripts/postbuild.mjs)
+cpSync(join(root, "public"), site, { recursive: true });
+for (const l of ["en", "ms"]) copyFileSync(join(site, l, "notfound", "index.html"), join(site, `404-${l}.html`));
 
 // sitemap + robots
 const sm = server.sitemap();

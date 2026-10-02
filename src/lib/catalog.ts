@@ -36,8 +36,9 @@ export function getProduct(slug: string): CatalogItem | undefined {
   return p ? enrich(p) : undefined;
 }
 
-export function getFeaturedProducts(): CatalogItem[] {
-  return allItems.filter((p) => p.featured);
+/** Best-sellers in rank order ("Start here" on the home page). */
+export function getBestsellers(): CatalogItem[] {
+  return allItems.filter((p) => p.bestseller).sort((a, b) => a.bestseller! - b.bestseller!);
 }
 
 export function getProductsByCategory(id: CategoryId): CatalogItem[] {
@@ -57,14 +58,21 @@ export function getRelatedProducts(item: CatalogItem, limit = 4): CatalogItem[] 
   return [...sameCollection, ...sameCategory].slice(0, limit);
 }
 
-export function productName(item: CatalogItem, lang: Locale): string {
-  return `${item.collectionData.name[lang]} — ${item.style[lang]}`;
+/** "Kurta Tiga Butang (AZ-K01)" — used in titles and WhatsApp messages. */
+export function productLabel(item: CatalogItem): string {
+  return item.code ? `${item.name} (${item.code})` : item.name;
+}
+
+/** Cover photo key: first image, or first shade image. */
+export function coverImageKey(item: CatalogItem): string | undefined {
+  return item.images?.[0] ?? item.shades?.find((s) => s.image)?.image;
 }
 
 export function countByCategory(): Record<CategoryId, number> {
-  const counts = { men: 0, women: 0, kids: 0, accessories: 0 } as Record<CategoryId, number>;
+  const counts = { men: 0, women: 0, kids: 0, fabrics: 0 } as Record<CategoryId, number>;
   for (const p of allItems) counts[p.categoryData.id]++;
   return counts;
 }
 
+export type { Locale };
 export { categories, collections };

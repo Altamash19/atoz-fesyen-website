@@ -5,13 +5,13 @@ import { extname, join, resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const dir = resolve(dirname(fileURLToPath(import.meta.url)), "out/site");
-const types = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css", ".xml": "application/xml", ".txt": "text/plain", ".svg": "image/svg+xml", ".jpg": "image/jpeg", ".png": "image/png", ".webp": "image/webp" };
+const types = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css", ".xml": "application/xml", ".txt": "text/plain", ".svg": "image/svg+xml", ".jpg": "image/jpeg", ".png": "image/png", ".webp": "image/webp", ".ico": "image/x-icon" };
 
 export function start(port = 4173) {
   const server = createServer((req, res) => {
     const url = new URL(req.url, "http://x");
     let p = decodeURIComponent(url.pathname).replace(/\/+$/, "") || "/";
-    if (p === "/") { res.writeHead(307, { Location: "/en" }); return res.end(); }
+    if (p === "/") { res.writeHead(307, { Location: "/en/" }); return res.end(); }
     let file = join(dir, p);
     if (!file.startsWith(dir)) { res.writeHead(400); return res.end(); }
     if (existsSync(file) && statSync(file).isDirectory()) file = join(file, "index.html");

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { site } from "@/config/site";
 import { locales, localeTags, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
+import { absoluteUrl } from "@/lib/whatsapp";
 
 interface Options {
   lang: Locale;
@@ -16,23 +17,23 @@ interface Options {
 export function buildMetadata({ lang, path, title, description, image }: Options): Metadata {
   const t = getDictionary(lang);
   const desc = description ?? t.meta.description;
-  const languages = Object.fromEntries(locales.map((l) => [localeTags[l], `/${l}${path}`]));
+  const languages = Object.fromEntries(locales.map((l) => [localeTags[l], absoluteUrl(`/${l}${path}/`)]));
 
   return {
     title: title ?? { absolute: t.meta.title },
     description: desc,
     alternates: {
-      canonical: `/${lang}${path}`,
-      languages: { ...languages, "x-default": `/en${path}` },
+      canonical: absoluteUrl(`/${lang}${path}/`),
+      languages: { ...languages, "x-default": absoluteUrl(`/en${path}/`) },
     },
     openGraph: {
       type: "website",
       siteName: site.name,
       locale: localeTags[lang].replace("-", "_"),
-      url: `/${lang}${path}`,
+      url: absoluteUrl(`/${lang}${path}/`),
       title: title ? `${title} | ${site.name}` : t.meta.title,
       description: desc,
-      ...(image ? { images: [{ url: image }] } : {}),
+      ...(image ? { images: [{ url: absoluteUrl(image) }] } : {}),
     },
     twitter: { card: image ? "summary_large_image" : "summary" },
   };

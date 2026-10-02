@@ -1,7 +1,7 @@
 # A TO Z Fesyen Baru — Website
 
 Bilingual (English / Bahasa Melayu) wholesale catalogue for **A TO Z Fesyen Baru Sdn. Bhd.**
-Built with **Next.js (App Router) + React + Tailwind CSS v4**, deployed on **Vercel**.
+Built with **Next.js (App Router, static export) + React + Tailwind CSS v4**, deployed on **GitHub Pages**.
 
 **Business goal:** turn website visitors into WhatsApp enquiries and wholesale quote requests.
 There is no cart or checkout. Wholesale pricing depends on quantity, so every product leads to a pre-filled WhatsApp chat.
@@ -11,9 +11,9 @@ There is no cart or checkout. Wholesale pricing depends on quantity, so every pr
 | Page | URL | Purpose |
 |---|---|---|
 | Home | `/en`, `/ms` | Hero, categories, best-sellers, why us, how wholesale works |
-| Catalogue | `/en/products` | All 42 products, live search (EN + BM terms), category filter |
-| Category | `/en/category/{men,women,kids,accessories}` | SEO-friendly category pages |
-| Product | `/en/products/{slug}` | Details, "Enquire on WhatsApp" + "Request wholesale quote" (both pre-filled) |
+| Catalogue | `/en/products/` | All 33 designs (AZ-K01 … AZ-W05 + sampin & fabric), search by name, code or fabric |
+| Category | `/en/category/{men,women,kids,fabrics}/` | SEO-friendly range pages |
+| Product | `/en/products/{slug}/` | Photos, shade picker, design code, fabric, sizes; WhatsApp enquiry pre-filled with code + shade |
 | Wholesale | `/en/wholesale` | Quote form → opens WhatsApp with the buyer's details |
 | About / Contact | `/en/about`, `/en/contact` | Company story, contact details, hours, map link |
 | 404 | any unknown URL | Branded "not found" page |
@@ -36,37 +36,38 @@ scripts/check-data.mjs  Pre-launch checks (placeholders, duplicate slugs, missin
 tests/                  Offline render + browser test harness (see "Testing")
 ```
 
-## Before launch: checklist
-
-1. **Fill in `src/config/site.ts`**: WhatsApp number, phone, email, address, Google Maps link and SSM number.
-   Until you do, `npm run check:data` fails on purpose.
-2. **Add product photos** to `public/products/` and reference them in `src/data/catalog.ts`:
-   ```ts
-   { slug: "baju-kurung-modern", …, images: ["/products/baju-kurung-modern-1.jpg", "/products/baju-kurung-modern-2.jpg"] },
-   ```
-   Use a 4:5 portrait ratio, at least 1200×1500px, JPG or WebP. Next.js resizes them automatically.
-   Products without photos show a tidy line-art placeholder.
-3. Confirm the product names in `catalog.ts` (see "Open questions" below).
-4. Run `npm run check:data`. It should print ✔.
-
 ## Run locally
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000  → redirects to /en
-npm run build      # production build (must pass before deploying)
+npm run dev        # http://localhost:3000/en/
+npm run build      # static site → /out (also writes index.html, 404.html)
 npm run typecheck
+npm run check:data # catalogue sanity checks (also runs in CI)
 ```
 
-## Deploy to Vercel (free tier is enough)
+## Deployment — GitHub Pages (free)
 
-1. Push this folder to a GitHub repo, e.g. `atoz-fesyen-website`.
-2. Go to vercel.com → **Add New → Project** → import the repo. Vercel detects Next.js, so you can keep the defaults.
-3. Optional environment variable: `NEXT_PUBLIC_SITE_URL=https://atozfesyen.com`.
-4. Deploy, then go to **Settings → Domains** and add `atozfesyen.com` and `www.atozfesyen.com`.
-   At your domain registrar, point DNS to Vercel as the dashboard instructs.
-   This replaces the current site, so do it only when you're ready.
-5. Submit `https://atozfesyen.com/sitemap.xml` in Google Search Console.
+Every push to `main` builds and deploys automatically (`.github/workflows/deploy.yml`).
+
+One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions.**
+
+### Connect atozfesyen.com (when ready to replace the old site)
+
+1. At the domain registrar, set DNS:
+   - `A` records for `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - `CNAME` for `www` → `altamash19.github.io`
+2. GitHub → **Settings → Pages → Custom domain** → `atozfesyen.com` → Save, then tick **Enforce HTTPS** once offered.
+3. **Settings → Secrets and variables → Actions → Variables** → add `CUSTOM_DOMAIN` = `atozfesyen.com`, then re-run the workflow.
+   The base path switches from `/atoz-fesyen-website` to `/` automatically.
+
+The site is a static export, so it also deploys unchanged to Vercel or Netlify if you ever switch.
+
+## Photos
+
+Product photos come from *Katalog Pemborong 2026* (extracted from the compressed PDF, so they're ~350–600 px wide).
+For sharper product pages, replace files in `public/products/` with the original photos (same file names, 4:5 portrait,
+≥1200 px, WebP or JPG), then run `npm run images`.
 
 ## Editing content
 
@@ -98,10 +99,8 @@ It covers 104 pages × desktop + mobile:
 
 ## Open questions for the business
 
-- Some style names come straight from the stock list and need confirming: "Zoom", "Luppi", "Titch button", "Yamen", "Marhaba", "Bombay".
-  Are these fabric names, supplier names or cut names? Better descriptions help customers and SEO.
-- Is "Trousers" for men only, or unisex?
-- Which products should be marked as best-sellers (`featured`) and as new (`isNew`)?
+- Baju Melayu (AZ-M01/M02) sizes and AZ-M02 fabric aren't stated in the catalogue — add them to `src/data/catalog.ts` when confirmed.
+- Original high-resolution photos would make product pages sharper (see "Photos").
 
 ## Roadmap (next phases)
 

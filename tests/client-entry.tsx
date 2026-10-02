@@ -9,9 +9,10 @@ import * as category from "@/app/[lang]/category/[category]/page";
 import * as wholesale from "@/app/[lang]/wholesale/page";
 import * as about from "@/app/[lang]/about/page";
 import * as contact from "@/app/[lang]/contact/page";
+import * as notfound from "@/app/[lang]/notfound/page";
 
 const routes: Record<string, { default: (p: { params: Promise<Record<string, string>> }) => Promise<ReactNode> }> = {
-  home, products, product, category, wholesale, about, contact,
+  home, products, product, category, wholesale, about, contact, notfound,
 };
 
 declare global { interface Window { __ROUTE__: { route: string; params: Record<string, string> }; __HYDRATED__?: boolean; __ERRORS__: string[] } }

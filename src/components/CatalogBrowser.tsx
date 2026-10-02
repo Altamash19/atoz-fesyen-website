@@ -39,7 +39,7 @@ export function CatalogBrowser({ lang, items, categories, counts, total, active 
       items.map((p) => ({
         item: p,
         text: normalize(
-          [p.collectionData.name.en, p.collectionData.name.ms, p.style.en, p.style.ms, p.categoryData.name.en, p.categoryData.name.ms, p.fabric?.en ?? ""].join(" "),
+          [p.name, p.code ?? "", (p.code ?? "").replace("AZ-", ""), p.tagline.en, p.tagline.ms, p.collectionData.name.en, p.collectionData.name.ms, p.categoryData.name.en, p.categoryData.name.ms, p.fabric ?? ""].join(" "),
         ),
       })),
     [items],
@@ -62,13 +62,13 @@ export function CatalogBrowser({ lang, items, categories, counts, total, active 
         <nav aria-label={t.products.filterLabel} className="-mx-4 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0">
           <ul className="flex gap-2">
             <li>
-              <Link href={`/${lang}/products`} className={chip(!active)} aria-current={!active ? "page" : undefined}>
+              <Link href={`/${lang}/products/`} className={chip(!active)} aria-current={!active ? "page" : undefined}>
                 {t.products.all} <span className="opacity-70">({total})</span>
               </Link>
             </li>
             {categories.map((c) => (
               <li key={c.id}>
-                <Link href={`/${lang}/category/${c.id}`} className={chip(active === c.id)} aria-current={active === c.id ? "page" : undefined}>
+                <Link href={`/${lang}/category/${c.id}/`} className={chip(active === c.id)} aria-current={active === c.id ? "page" : undefined}>
                   {c.name[lang]} <span className="opacity-70">({counts[c.id]})</span>
                 </Link>
               </li>

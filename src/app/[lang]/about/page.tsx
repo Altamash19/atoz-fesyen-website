@@ -9,7 +9,7 @@ type Props = { params: Promise<{ lang: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   const t = getDictionary(lang as Locale);
-  return buildMetadata({ lang: lang as Locale, path: "/about", title: t.about.title, description: t.about.intro });
+  return buildMetadata({ lang: lang as Locale, path: "/about", title: t.nav.about, description: t.about.intro });
 }
 
 export default async function Page({ params }: Props) {
