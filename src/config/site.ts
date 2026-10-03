@@ -30,6 +30,16 @@ export const site = {
     ms: "Ahad – Khamis 10 pagi – 7 malam · Jumaat & Sabtu 10 pagi – 8 malam",
   },
 
+  /**
+   * Opening times used for the "Open now" badge, the hours table and Google structured data.
+   * day: 0 = Sunday … 6 = Saturday. Times are Malaysia time (24h).
+   */
+  schedule: [
+    { days: [0, 1, 2, 3, 4], open: "10:00", close: "19:00" },
+    { days: [5, 6], open: "10:00", close: "20:00" },
+  ],
+  timeZone: "Asia/Kuala_Lumpur",
+
   social: {
     facebook: "https://www.facebook.com/atozfesyenbaru",
     instagram: "https://www.instagram.com/atozfesyen.my",

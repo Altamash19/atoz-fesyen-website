@@ -38,6 +38,7 @@ export function Footer({ lang }: { lang: Locale }) {
           <div>
             <h2 className="font-sans text-sm font-semibold tracking-wider text-gold-soft uppercase">{t.footer.explore}</h2>
             <ul className="mt-4 space-y-2.5 text-sm">
+              <li><Link href={`/${lang}/shop/`} className="hover:text-white hover:underline">{t.shop.nav}</Link></li>
               <li><Link href={`/${lang}/wholesale/`} className="hover:text-white hover:underline">{t.nav.wholesale}</Link></li>
               <li><Link href={`/${lang}/about/`} className="hover:text-white hover:underline">{t.nav.about}</Link></li>
               <li><Link href={`/${lang}/contact/`} className="hover:text-white hover:underline">{t.nav.contact}</Link></li>

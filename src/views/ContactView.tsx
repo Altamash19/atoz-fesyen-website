@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { ReactNode } from "react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ClockIcon, GlobeIcon, MailIcon, PhoneIcon, PinIcon, WhatsAppIcon } from "@/components/icons";
@@ -59,6 +60,10 @@ export function ContactView({ lang }: { lang: Locale }) {
           </Row>
           <Row icon={<ClockIcon />} label={t.contact.hours}>
             {site.hours[lang]}
+            <br />
+            <Link href={`/${lang}/shop/`} className="mt-1 inline-block text-sm font-semibold text-brand-700 hover:underline">
+              {t.shop.nav} →
+            </Link>
           </Row>
           <Row icon={<WhatsAppIcon />} label={t.contact.whatsapp}>
             <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="font-medium hover:text-brand-700 hover:underline">

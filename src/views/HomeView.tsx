@@ -146,6 +146,35 @@ export function HomeView({ lang }: { lang: Locale }) {
         </div>
       </section>
 
+      {/* Visit the shop teaser */}
+      <section className="container-page pb-14 md:pb-20" aria-labelledby="shop-teaser-heading">
+        <Link
+          href={`/${lang}/shop/`}
+          className="group grid overflow-hidden rounded-[2rem] border border-line bg-white transition hover:shadow-xl hover:shadow-brand-900/10 md:grid-cols-[1.1fr_1fr]"
+        >
+          <div className="grid grid-cols-3 gap-1.5 bg-white p-1.5">
+            {["shop-front", "shop-kurta-wall", "shop-stockroom"].map((k, i) => {
+              const img = requireImage(k);
+              return (
+                <div key={k} className={`relative overflow-hidden rounded-[1.4rem] ${i === 0 ? "col-span-2 row-span-2 aspect-[3/4]" : "aspect-[3/4]"}`}>
+                  <Image src={img.src} alt="" fill sizes="(min-width: 768px) 25vw, 33vw" className="object-cover transition duration-700 group-hover:scale-105" />
+                </div>
+              );
+            })}
+          </div>
+          <div className="flex flex-col justify-center p-7 md:p-10">
+            <p className="eyebrow">{t.shop.eyebrow}</p>
+            <h2 id="shop-teaser-heading" className="mt-2 text-3xl font-semibold text-brand-900 md:text-4xl">
+              {t.shop.title} <span className="font-normal text-gold italic">{t.shop.titleAccent}</span>
+            </h2>
+            <p className="mt-3 leading-relaxed text-muted">{site.hours[lang]}</p>
+            <span className="mt-6 inline-flex items-center gap-2 font-semibold text-brand-700 group-hover:underline">
+              {t.shop.nav} <ArrowRightIcon width={18} height={18} />
+            </span>
+          </div>
+        </Link>
+      </section>
+
       {/* Raya planner */}
       <section className="container-page" aria-labelledby="raya-heading">
         <div className="pattern-geo overflow-hidden rounded-[2rem] px-6 py-12 text-white sm:px-10 md:py-16">

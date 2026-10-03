@@ -234,6 +234,37 @@ await test("shade picker swaps photo and adds the shade to the WhatsApp message"
   await page.close();
 });
 
+await test("shop page: live open/closed badge, hours table, lightbox gallery", async () => {
+  const { page } = await open(desktop, "/en/shop/");
+  const badge = await page.locator('[data-testid="open-status"]').first().textContent();
+  assert(/^(Open now · closes (7|8) pm|Closed · opens .*10 am)$/.test(badge.trim()), `badge "${badge}"`);
+  const rows = await page.locator('[data-testid="hours-table"] tr').count();
+  assert(rows === 7, `hours rows ${rows}`);
+  assert((await page.locator('[data-testid="hours-table"] tr[aria-current="date"]').count()) === 1, "today highlighted");
+  const fri = await page.locator('[data-testid="hours-table"] tr', { hasText: "Friday" }).textContent();
+  assert(fri.includes("10 am – 8 pm"), `Friday row "${fri}"`);
+  const sun = await page.locator('[data-testid="hours-table"] tr', { hasText: "Sunday" }).textContent();
+  assert(sun.includes("10 am – 7 pm"), `Sunday row "${sun}"`);
+  await page.locator('[data-testid="shop-gallery"] button').nth(1).click();
+  const first = await page.getAttribute('[data-testid="lightbox-photo"]', "src");
+  await page.keyboard.press("ArrowRight");
+  const second = await page.getAttribute('[data-testid="lightbox-photo"]', "src");
+  assert(first !== second && second.includes("shop-"), `lightbox did not advance ${first} → ${second}`);
+  await page.keyboard.press("Escape");
+  await page.waitForTimeout(200);
+  assert(!(await page.locator('[data-testid="lightbox-photo"]').count()), "Escape should close lightbox");
+  const wa = decodeURIComponent(new URL(await page.getAttribute('[data-testid="visit-whatsapp"]', "href")).searchParams.get("text"));
+  assert(wa.includes("coming to the shop"), wa);
+  await page.close();
+});
+
+await test("BM hours use Malay day names", async () => {
+  const { page } = await open(desktop, "/ms/shop/");
+  const txt = await page.locator('[data-testid="hours-table"]').textContent();
+  assert(txt.includes("Jumaat") && txt.includes("10 pagi – 8 malam"), txt);
+  await page.close();
+});
+
 await test("skip link is first focusable element and targets main", async () => {
   const { page } = await open(desktop, "/en/products/");
   await page.keyboard.press("Tab");
@@ -245,7 +276,7 @@ await test("skip link is first focusable element and targets main", async () => 
 await test("sitemap and robots are valid", async () => {
   const sm = await (await fetch(BASE + "/sitemap.xml")).text();
   const n = (sm.match(/<loc>/g) || []).length;
-  assert(n === 84, `sitemap urls ${n}`);
+  assert(n === 86, `sitemap urls ${n}`);
   const rb = await (await fetch(BASE + "/robots.txt")).text();
   assert(rb.includes("Sitemap: https://altamash19.github.io/atoz-fesyen-website/sitemap.xml"), rb);
 });
@@ -261,6 +292,8 @@ const shotList = [
   ["product-shades-desktop", desktop, "/en/products/baju-melayu-cekak-musang/", false],
   ["product-mobile", mobile, "/en/products/jubah-lima-butang/", true],
   ["wholesale-desktop", desktop, "/en/wholesale", true],
+  ["shop-desktop", desktop, "/en/shop/", true],
+  ["shop-mobile", mobile, "/ms/shop/", true],
   ["about-desktop", desktop, "/en/about", true],
   ["contact-mobile", mobile, "/ms/contact", true],
   ["404-desktop", desktop, "/en/nope", false],

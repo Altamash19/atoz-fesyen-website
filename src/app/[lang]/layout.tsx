@@ -8,6 +8,7 @@ import { SiteShell } from "@/components/SiteShell";
 import { site } from "@/config/site";
 import { isLocale, locales, localeTags } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
+import { openingHoursSpecification } from "@/lib/hours";
 import { absoluteUrl } from "@/lib/whatsapp";
 
 const body = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
@@ -54,6 +55,8 @@ export default async function LangLayout({ children, params }: { children: React
             url: absoluteUrl(`/${lang}`),
             foundingDate: String(site.foundedYear),
             telephone: `+${site.whatsapp}`,
+            openingHoursSpecification: openingHoursSpecification(),
+            image: absoluteUrl("/images/shop-front.webp"),
             email: site.email,
             address: {
               "@type": "PostalAddress",

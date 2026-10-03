@@ -159,6 +159,13 @@
     box-shadow: 0 0 0 3px var(--color-brand-100);
   }
 
+  /* Large outlined numerals (shop tour). */
+  .num-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--color-gold);
+    paint-order: stroke;
+  }
+
   /* Subtle geometric motif used on dark brand panels. */
   .pattern-geo {
     background-image:

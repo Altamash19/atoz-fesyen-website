@@ -17,6 +17,7 @@ export function Header({ lang }: { lang: Locale }) {
 
   const links = [
     { href: `/${lang}/products/`, label: t.nav.products },
+    { href: `/${lang}/shop/`, label: t.shop.nav },
     { href: `/${lang}/wholesale/`, label: t.nav.wholesale },
     { href: `/${lang}/about/`, label: t.nav.about },
     { href: `/${lang}/contact/`, label: t.nav.contact },

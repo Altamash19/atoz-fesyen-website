@@ -66,4 +66,12 @@ export const imageManifest: Record<string, { src: string; width: number; height:
   "hero-jubah-green": { src: "/images/hero-jubah-green.webp", width: 798, height: 1065 },
   "hero-kurta": { src: "/images/hero-kurta.webp", width: 941, height: 1800 },
   "hero-kurung-teal": { src: "/images/hero-kurung-teal.webp", width: 798, height: 892 },
+  "shop-cashier": { src: "/images/shop-cashier.webp", width: 960, height: 1280 },
+  "shop-floor": { src: "/images/shop-floor.webp", width: 960, height: 1280 },
+  "shop-front-2": { src: "/images/shop-front-2.webp", width: 960, height: 1280 },
+  "shop-front": { src: "/images/shop-front.webp", width: 960, height: 1280 },
+  "shop-kurta-wall": { src: "/images/shop-kurta-wall.webp", width: 960, height: 1280 },
+  "shop-ladies": { src: "/images/shop-ladies.webp", width: 960, height: 1280 },
+  "shop-stock": { src: "/images/shop-stock.webp", width: 1280, height: 960 },
+  "shop-stockroom": { src: "/images/shop-stockroom.webp", width: 960, height: 1280 },
 };
