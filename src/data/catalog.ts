@@ -67,8 +67,8 @@ export interface Product {
 }
 
 const L = (en: string, ms: string): Localized => ({ en, ms });
-const menSizes = L("S – 5XL", "S – 5XL");
-const ladiesSizes = L("S – 5XL", "S – 5XL");
+const menSizes = L("S – 4XL", "S – 4XL");
+const ladiesSizes = L("S – 3XL", "S – 3XL");
 const kidsSizes = L("4 – 16 years (4, 6, 8, 10, 12, 14, 16)", "4 – 16 tahun (4, 6, 8, 10, 12, 14, 16)");
 const colours = (n: number) => L(`${n} colours`, `${n} warna`);
 
@@ -78,8 +78,8 @@ export const categories: Category[] = [
     cover: "az-k06",
     name: L("Men", "Lelaki"),
     blurb: L(
-      "Kurta, jubbah and baju Melayu in China Cotton, Royal Cotton, crepe and satin — sizes S to 5XL.",
-      "Kurta, jubah dan baju Melayu dalam China Cotton, Royal Cotton, crepe dan satin — saiz S hingga 5XL.",
+      "Kurta, jubbah and baju Melayu in China Cotton, Royal Cotton, crepe and satin — sizes S to 4XL.",
+      "Kurta, jubah dan baju Melayu dalam China Cotton, Royal Cotton, crepe dan satin — saiz S hingga 4XL.",
     ),
   },
   {
@@ -424,7 +424,7 @@ export const products: Product[] = [
       "Scorpio 100% kapas dengan kelim beralun pada baju dan kain serta cuff berkedut. Dua belas warna dari kelabu abu hingga merah wain. Cloud White (AZ-W01·CW) paling laris; juga popular dalam warna khaki pasir, coklat koko dan hijau zaitun.",
     ),
     fabric: "Scorpio cotton", sizes: ladiesSizes, colours: colours(12), images: ["az-w01", "az-w01-2", "az-w01-3"],
-    bestseller: 4, bestsellerNote: L("Twelve colours, S to 5XL.", "Dua belas warna, S hingga 5XL."),
+    bestseller: 4, bestsellerNote: L("Twelve colours, S to 3XL.", "Dua belas warna, S hingga 3XL."),
   },
   {
     slug: "kurung-sulam", code: "AZ-W02", collection: "baju-kurung", name: "Kurung Sulam",

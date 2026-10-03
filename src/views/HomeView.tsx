@@ -42,7 +42,7 @@ export function HomeView({ lang }: { lang: Locale }) {
             <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-line pt-6">
               {[
                 { v: String(designs), l: t.home.stats.designs },
-                { v: "S–5XL", l: t.home.stats.sizes },
+                { v: "S–4XL", l: t.home.stats.sizes },
                 { v: `${years}+`, l: t.home.stats.years },
               ].map((s) => (
                 <div key={s.l} className="flex flex-col-reverse">

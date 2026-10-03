@@ -25,7 +25,7 @@ export function AboutView({ lang }: { lang: Locale }) {
             {[
               { v: String(site.foundedYear), l: t.about.founded },
               { v: String(getAllProducts().filter((p) => p.code).length), l: t.about.stats.designs },
-              { v: "S–5XL", l: t.about.stats.sizes },
+              { v: "S–4XL", l: t.about.stats.sizes },
             ].map((s) => (
               <div key={s.l} className="flex flex-col-reverse">
                 <dt className="mt-1 text-xs text-muted">{s.l}</dt>

@@ -103,7 +103,7 @@ It covers 104 pages × desktop + mobile:
 ## Open questions for the business
 
 - AZ-M02 (Teluk Belanga) fabric isn't stated in the catalogue — add it to `src/data/catalog.ts` when confirmed.
-- Adult sizes are S–5XL across the range (per the business); kids 4–16 years.
+- Sizes: men S–4XL, ladies S–3XL, kids 4–16 years, kaftan free size.
 
 ## Roadmap (next phases)
 
