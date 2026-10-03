@@ -65,7 +65,7 @@ export function productLabel(item: CatalogItem): string {
 
 /** Cover photo key: first image, or first shade image. */
 export function coverImageKey(item: CatalogItem): string | undefined {
-  return item.images?.[0] ?? item.shades?.find((s) => s.image)?.image;
+  return item.cover ?? item.images?.[0] ?? item.shades?.find((s) => s.image)?.image;
 }
 
 export function countByCategory(): Record<CategoryId, number> {

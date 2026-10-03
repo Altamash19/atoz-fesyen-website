@@ -15,9 +15,11 @@ export function HomeView({ lang }: { lang: Locale }) {
   const counts = countByCategory();
   const years = new Date().getFullYear() - site.foundedYear;
   const designs = getAllProducts().filter((p) => p.code).length;
-  const hero = requireImage("hero-kurta");
-  const heroB = requireImage("hero-jubah-green");
-  const heroC = requireImage("hero-kurung-teal");
+  const hero = requireImage("az-m01-model-01");
+  const heroB = requireImage("az-m01-model-06");
+  const heroC = requireImage("az-w04-model");
+  const heroD = requireImage("az-m01-model-03");
+  const shopPhoto = requireImage("shop-front");
   const fabric = requireImage("fabric-colour-card");
 
   return (
@@ -51,16 +53,24 @@ export function HomeView({ lang }: { lang: Locale }) {
             </dl>
           </div>
 
-          {/* Photo collage from the 2026 catalogue */}
-          <div className="grid grid-cols-5 gap-3 lg:col-span-6" aria-hidden="true">
-            <div className="relative col-span-3 row-span-2 aspect-[3/4] overflow-hidden rounded-[1.75rem] bg-white">
-              <Image src={hero.src} alt="" fill priority sizes="(min-width: 1024px) 360px, 60vw" className="object-cover object-top" />
-            </div>
-            <div className="relative col-span-2 aspect-square overflow-hidden rounded-[1.25rem] bg-sand">
-              <Image src={heroB.src} alt="" fill sizes="(min-width: 1024px) 240px, 40vw" className="object-cover" />
-            </div>
-            <div className="relative col-span-2 aspect-square overflow-hidden rounded-[1.25rem] bg-sand">
-              <Image src={heroC.src} alt="" fill sizes="(min-width: 1024px) 240px, 40vw" className="object-cover" />
+          {/* Photo collage — studio shoot */}
+          <div className="relative lg:col-span-6" aria-hidden="true">
+            <div className="grid grid-cols-6 gap-3">
+              <div className="relative col-span-6 aspect-[968/698] overflow-hidden rounded-[1.75rem] bg-sand shadow-xl shadow-brand-900/10">
+                <Image src={hero.src} alt="" fill priority sizes="(min-width: 1024px) 600px, 100vw" className="object-cover" />
+                <span className="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-brand-800 backdrop-blur">
+                  Baju Melayu Cekak Musang · AZ-M01
+                </span>
+              </div>
+              <div className="relative col-span-2 aspect-[3/4] overflow-hidden rounded-[1.25rem] bg-sand">
+                <Image src={heroB.src} alt="" fill sizes="(min-width: 1024px) 200px, 33vw" className="object-cover" style={{ objectPosition: "66% 50%" }} />
+              </div>
+              <div className="relative col-span-2 aspect-[3/4] overflow-hidden rounded-[1.25rem] bg-sand">
+                <Image src={heroC.src} alt="" fill sizes="(min-width: 1024px) 200px, 33vw" className="object-cover object-top" />
+              </div>
+              <div className="relative col-span-2 aspect-[3/4] overflow-hidden rounded-[1.25rem] bg-sand">
+                <Image src={heroD.src} alt="" fill sizes="(min-width: 1024px) 200px, 33vw" className="object-cover" style={{ objectPosition: "60% 50%" }} />
+              </div>
             </div>
           </div>
         </div>
@@ -152,15 +162,14 @@ export function HomeView({ lang }: { lang: Locale }) {
           href={`/${lang}/shop/`}
           className="group grid overflow-hidden rounded-[2rem] border border-line bg-white transition hover:shadow-xl hover:shadow-brand-900/10 md:grid-cols-[1.1fr_1fr]"
         >
-          <div className="grid grid-cols-3 gap-1.5 bg-white p-1.5">
-            {["shop-front", "shop-kurta-wall", "shop-stockroom"].map((k, i) => {
-              const img = requireImage(k);
-              return (
-                <div key={k} className={`relative overflow-hidden rounded-[1.4rem] ${i === 0 ? "col-span-2 row-span-2 aspect-[3/4]" : "aspect-[3/4]"}`}>
-                  <Image src={img.src} alt="" fill sizes="(min-width: 768px) 25vw, 33vw" className="object-cover transition duration-700 group-hover:scale-105" />
-                </div>
-              );
-            })}
+          <div className="relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[26rem]">
+            <Image src={shopPhoto.src} alt={t.shop.alts["shop-front"]} fill sizes="(min-width: 768px) 55vw, 100vw" className="object-cover transition duration-700 group-hover:scale-105" style={{ objectPosition: "50% 35%" }} />
+            <span className="absolute top-4 left-4 grid h-20 w-20 -rotate-12 place-items-center rounded-full bg-gold text-center font-display leading-tight text-white shadow-lg" aria-hidden="true">
+              <span>
+                <span className="block font-sans text-[0.55rem] font-bold tracking-[0.2em] uppercase">Lot</span>
+                <span className="block text-2xl font-semibold">20</span>
+              </span>
+            </span>
           </div>
           <div className="flex flex-col justify-center p-7 md:p-10">
             <p className="eyebrow">{t.shop.eyebrow}</p>

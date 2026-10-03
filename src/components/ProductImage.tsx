@@ -23,7 +23,7 @@ export function ProductImage({ item, lang, priority = false }: Props) {
 
   if (img) {
     const ratio = img.width / img.height;
-    const fit = ratio > 1.02 ? "object-contain" : ratio < 0.6 ? "object-cover object-top" : "object-cover";
+    const fit = item.coverFocus ? "object-cover" : ratio > 1.02 ? "object-contain" : ratio < 0.6 ? "object-cover object-top" : "object-cover";
     return (
       <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#efebe3]">
         <Image
@@ -33,6 +33,7 @@ export function ProductImage({ item, lang, priority = false }: Props) {
           priority={priority}
           sizes="(min-width: 1024px) 300px, (min-width: 640px) 45vw, 50vw"
           className={fit}
+          style={item.coverFocus ? { objectPosition: item.coverFocus } : undefined}
         />
       </div>
     );

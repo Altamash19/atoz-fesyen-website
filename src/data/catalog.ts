@@ -56,6 +56,10 @@ export interface Product {
   colours?: Localized;
   shades?: Shade[];
   images?: string[];
+  /** Image key for catalogue cards when it differs from the first gallery image. */
+  cover?: string;
+  /** CSS object-position for the card crop of a wide cover photo, e.g. "62% 50%". */
+  coverFocus?: string;
   /** Ranked best-seller (1 = top) — shown in "Start here". */
   bestseller?: number;
   bestsellerNote?: Localized;
@@ -229,7 +233,7 @@ export const products: Product[] = [
       "Three-button placket with a chest pocket. Short sleeve, straight hem — the everyday seller of the range. Plackets are interlined and topstitched, with shell-look four-hole buttons and a woven house label at the chest pocket.",
       "Plaket tiga butang dengan poket dada. Lengan pendek, kelim lurus — jualan harian paling laris dalam rangkaian ini. Plaket berlapik dan dijahit tindas, butang empat lubang rupa cangkerang dan label tenun di poket dada.",
     ),
-    fabric: "China Cotton", sizes: menSizes, images: ["az-k01", "az-k01-2"],
+    fabric: "China Cotton", sizes: menSizes, images: ["az-k01-info", "az-k01", "az-k01-detail", "az-k01-2"], cover: "az-k01-detail",
   },
   {
     slug: "kurta-leher-v", code: "AZ-K02", collection: "kurta-lelaki", name: "Kurta Leher V",
@@ -238,7 +242,7 @@ export const products: Product[] = [
       "A clean V opening with no buttons. Long sleeve — the quietest neckline we cut.",
       "Bukaan leher V yang kemas tanpa butang. Lengan panjang — potongan leher paling ringkas kami.",
     ),
-    fabric: "China Cotton", sizes: menSizes, images: ["az-k02"],
+    fabric: "China Cotton", sizes: menSizes, images: ["az-k02-info", "az-k02", "az-k02-detail"], cover: "az-k02-detail",
   },
   {
     slug: "kurta-dua-butang", code: "AZ-K03", collection: "kurta-lelaki", name: "Kurta Dua Butang",
@@ -247,7 +251,7 @@ export const products: Product[] = [
       "Two buttons at the collar band, long sleeve. The traditional finish, plainly done.",
       "Dua butang pada jalur kolar, lengan panjang. Kemasan tradisional yang ringkas.",
     ),
-    fabric: "China Cotton", sizes: menSizes, images: ["az-k03"],
+    fabric: "China Cotton", sizes: menSizes, images: ["az-k03-info", "az-k03", "az-k03-detail"], cover: "az-k03-detail",
   },
   {
     slug: "kurta-butang-luppi", code: "AZ-K04", collection: "kurta-lelaki", name: "Kurta Butang Luppi",
@@ -256,7 +260,7 @@ export const products: Product[] = [
       "A single ornamental luppi button at the throat over a short slit opening — the dressiest of the plain necklines.",
       "Sebutir butang hiasan luppi di leher dengan belahan pendek — paling segak antara potongan leher kosong.",
     ),
-    fabric: "China Cotton", sizes: menSizes, images: ["az-k04"],
+    fabric: "China Cotton", sizes: menSizes, images: ["az-k04-info", "az-k04", "az-k04-detail"], cover: "az-k04-detail",
   },
   {
     slug: "kurta-kolar-cuff", code: "AZ-K05", collection: "kurta-lelaki", name: "Kurta Kolar Cuff",
@@ -265,7 +269,7 @@ export const products: Product[] = [
       "Buttoned collar band and a proper shirt cuff, cut in crepe. The formal end of the kurta range.",
       "Kolar berbutang dan cuff kemeja sebenar, dalam fabrik crepe. Pilihan paling formal dalam rangkaian kurta.",
     ),
-    fabric: "Crepe", sizes: menSizes, images: ["az-k05"],
+    fabric: "Crepe", sizes: menSizes, images: ["az-k05-info", "az-k05", "az-k05-detail"], cover: "az-k05-detail",
   },
   // ── Kurta Bercorak (AZ-K06 – K10) ───────────────────────────
   {
@@ -376,17 +380,17 @@ export const products: Product[] = [
     ),
     fabric: "Satin", sizes: menSizes, colours: colours(9),
     shades: [
-      { no: "01", name: L("Emerald", "Hijau Zamrud"), image: "az-m01-01" },
+      { no: "01", name: L("Emerald", "Hijau Zamrud"), image: "az-m01-model-01" },
       { no: "02", name: L("Black", "Hitam"), image: "az-m01-02" },
-      { no: "03", name: L("Royal blue", "Biru Diraja"), image: "az-m01-03" },
+      { no: "03", name: L("Royal blue", "Biru Diraja"), image: "az-m01-model-03" },
       { no: "04", name: L("Grey", "Kelabu"), image: "az-m01-04" },
       { no: "05", name: L("Turquoise", "Biru Firus"), image: "az-m01-05" },
-      { no: "06", name: L("Red", "Merah"), image: "az-m01-06" },
+      { no: "06", name: L("Red", "Merah"), image: "az-m01-model-06" },
       { no: "07", name: L("Olive", "Hijau Zaitun"), image: "az-m01-07" },
       { no: "08", name: L("Cream", "Krim"), image: "az-m01-08" },
       { no: "09", name: L("Purple", "Ungu"), image: "az-m01-09" },
     ],
-    images: ["az-m01-01"],
+    images: ["az-m01-model-01"], coverFocus: "62% 50%",
   },
   {
     slug: "baju-melayu-teluk-belanga", code: "AZ-M02", collection: "baju-melayu", name: "Baju Melayu Teluk Belanga",
@@ -429,7 +433,7 @@ export const products: Product[] = [
       "Cotton Sulam throughout, with the embroidery banded at the sleeve and skirt hem. The occasion set for Raya and majlis.",
       "Cotton Sulam sepenuhnya, dengan jalur sulaman di hujung lengan dan kelim kain. Set pilihan untuk Raya dan majlis.",
     ),
-    fabric: "Cotton Sulam", sizes: ladiesSizes, colours: colours(16), images: ["az-w02"],
+    fabric: "Cotton Sulam", sizes: ladiesSizes, colours: colours(16), images: ["az-w02-info", "az-w02"], cover: "az-w02",
   },
   // ── Bercorak (AZ-W03 – W04) ─────────────────────────────────
   {
@@ -448,7 +452,7 @@ export const products: Product[] = [
       "One-piece jubah in a small floral print — buttoned front, gathered cuff, full length. The everyday alternative to the two-piece kurung.",
       "Jubah sehelai dalam corak bunga kecil — butang di hadapan, cuff berkedut, labuh penuh. Alternatif harian kepada baju kurung dua helai.",
     ),
-    fabric: "Printed cotton", sizes: ladiesSizes, images: ["az-w04"],
+    fabric: "Printed cotton", sizes: ladiesSizes, images: ["az-w04-model", "az-w04"],
   },
   // ── Kaftan (AZ-W05) ─────────────────────────────────────────
   {

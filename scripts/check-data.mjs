@@ -35,7 +35,7 @@ for (const b of blocks) {
   for (const k of [...imgs, ...shadeImgs]) if (!imageKeys.has(k)) errors.push(`${slug}: image "${k}" missing — add it to public/products and run npm run images`);
   if (!imgs.length && !shadeImgs.length) errors.push(`${slug}: no photo`);
 }
-for (const k of ["hero-kurta", "hero-jubah-green", "hero-kurung-teal", "fabric-colour-card", "about-rack", "altamash", "contact-rack"])
+for (const k of ["az-m01-model-01", "az-m01-model-03", "az-m01-model-06", "az-w04-model", "shop-front", "fabric-colour-card", "about-rack", "altamash", "contact-rack"])
   if (!imageKeys.has(k)) errors.push(`Site image "${k}" missing from public/images`);
 
 if (/TODO/.test(siteCfg)) errors.push("src/config/site.ts still contains TODO placeholders");
