@@ -247,7 +247,7 @@ await test("sitemap and robots are valid", async () => {
   const n = (sm.match(/<loc>/g) || []).length;
   assert(n === 84, `sitemap urls ${n}`);
   const rb = await (await fetch(BASE + "/robots.txt")).text();
-  assert(rb.includes("Sitemap: https://atozfesyen.com/sitemap.xml"), rb);
+  assert(rb.includes("Sitemap: https://altamash19.github.io/atoz-fesyen-website/sitemap.xml"), rb);
 });
 
 // ── 3. Screenshots for visual review

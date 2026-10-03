@@ -31,7 +31,7 @@ const en = {
     title: "Kurta, jubbah & baju kurung — wholesale since 2005.",
     subtitle:
       "Cotton kurta and jubbah for men and boys, baju Melayu, and the ladies kurung range — supplied to retailers, agents and distributors from Kuala Lumpur. Every design is ready stock, with no minimum order.",
-    stats: { designs: "designs", sizes: "men's sizes", years: "years trading" },
+    stats: { designs: "designs", sizes: "adult sizes", years: "years trading" },
     categoriesTitle: "Shop by range",
     startTitle: "Start here",
     startSubtitle: "Opening an account and not sure where to begin? These leave the shop fastest — the ones we would stock ourselves.",
@@ -209,7 +209,7 @@ const ms: Dictionary = {
     title: "Kurta, jubah & baju kurung — borong sejak 2005.",
     subtitle:
       "Kurta dan jubah kapas untuk lelaki dan kanak-kanak, baju Melayu, dan rangkaian baju kurung wanita — dibekalkan kepada peruncit, ejen dan pengedar dari Kuala Lumpur. Semua rekaan stok sedia ada, tiada minimum tempahan.",
-    stats: { designs: "rekaan", sizes: "saiz lelaki", years: "tahun berniaga" },
+    stats: { designs: "rekaan", sizes: "saiz dewasa", years: "tahun berniaga" },
     categoriesTitle: "Pilih mengikut rangkaian",
     startTitle: "Mula di sini",
     startSubtitle: "Baru membuka akaun dan tidak tahu mula dari mana? Inilah yang paling cepat keluar dari kedai — yang kami sendiri akan stok.",

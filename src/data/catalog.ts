@@ -63,8 +63,8 @@ export interface Product {
 }
 
 const L = (en: string, ms: string): Localized => ({ en, ms });
-const menSizes = L("S – 4XL", "S – 4XL");
-const ladiesSizes = L("S – 3XL", "S – 3XL");
+const menSizes = L("S – 5XL", "S – 5XL");
+const ladiesSizes = L("S – 5XL", "S – 5XL");
 const kidsSizes = L("4 – 16 years (4, 6, 8, 10, 12, 14, 16)", "4 – 16 tahun (4, 6, 8, 10, 12, 14, 16)");
 const colours = (n: number) => L(`${n} colours`, `${n} warna`);
 
@@ -74,8 +74,8 @@ export const categories: Category[] = [
     cover: "az-k06",
     name: L("Men", "Lelaki"),
     blurb: L(
-      "Kurta, jubbah and baju Melayu in China Cotton, Royal Cotton, crepe and satin — sizes S to 4XL.",
-      "Kurta, jubah dan baju Melayu dalam China Cotton, Royal Cotton, crepe dan satin — saiz S hingga 4XL.",
+      "Kurta, jubbah and baju Melayu in China Cotton, Royal Cotton, crepe and satin — sizes S to 5XL.",
+      "Kurta, jubah dan baju Melayu dalam China Cotton, Royal Cotton, crepe dan satin — saiz S hingga 5XL.",
     ),
   },
   {
@@ -374,7 +374,7 @@ export const products: Product[] = [
       "A standing collar closed with five buttons, a chest pocket and two hip pockets. Satin, sold as shirt and trousers. Quote the shade number with the code. Sampin sold separately.",
       "Kolar tegak dengan lima butang, poket dada dan dua poket pinggul. Satin, dijual sebagai baju dan seluar. Nyatakan nombor warna bersama kod. Sampin dijual berasingan.",
     ),
-    fabric: "Satin", sizes: L("Ask for the size chart", "Minta carta saiz"), colours: colours(9),
+    fabric: "Satin", sizes: menSizes, colours: colours(9),
     shades: [
       { no: "01", name: L("Emerald", "Hijau Zamrud"), image: "az-m01-01" },
       { no: "02", name: L("Black", "Hitam"), image: "az-m01-02" },
@@ -395,7 +395,7 @@ export const products: Product[] = [
       "The collarless neckline with a single button at the throat, elbow-length sleeves and a chest pocket. Sold as shirt and trousers. Quote the shade number with the code. Sampin sold separately.",
       "Leher tanpa kolar dengan sebutir butang di leher, lengan paras siku dan poket dada. Dijual sebagai baju dan seluar. Nyatakan nombor warna bersama kod. Sampin dijual berasingan.",
     ),
-    sizes: L("Ask for the size chart", "Minta carta saiz"), colours: colours(11),
+    sizes: menSizes, colours: colours(11),
     shades: [
       { no: "01", name: L("Peach", "Peach"), image: "az-m02-01" },
       { no: "02", name: L("Tan / Apricot", "Aprikot"), image: "az-m02-02" },
@@ -420,7 +420,7 @@ export const products: Product[] = [
       "Scorpio 100% kapas dengan kelim beralun pada baju dan kain serta cuff berkedut. Dua belas warna dari kelabu abu hingga merah wain. Cloud White (AZ-W01·CW) paling laris; juga popular dalam warna khaki pasir, coklat koko dan hijau zaitun.",
     ),
     fabric: "Scorpio cotton", sizes: ladiesSizes, colours: colours(12), images: ["az-w01", "az-w01-2", "az-w01-3"],
-    bestseller: 4, bestsellerNote: L("Twelve colours, S to 3XL.", "Dua belas warna, S hingga 3XL."),
+    bestseller: 4, bestsellerNote: L("Twelve colours, S to 5XL.", "Dua belas warna, S hingga 5XL."),
   },
   {
     slug: "kurung-sulam", code: "AZ-W02", collection: "baju-kurung", name: "Kurung Sulam",

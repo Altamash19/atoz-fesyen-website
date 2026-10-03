@@ -52,20 +52,23 @@ Every push to `main` builds and deploys automatically (`.github/workflows/deploy
 
 One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions.**
 
-### Connect atozfesyen.com (when ready to replace the old site)
+### Custom domain
+
+The live address is **https://altamash19.github.io/atoz-fesyen-website/** until a domain is connected.
+atozfesyen.com is controlled by the previous developer. To use any domain you control (e.g. a new `.com.my`):
 
 1. At the domain registrar, set DNS:
    - `A` records for `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
    - `CNAME` for `www` → `altamash19.github.io`
-2. GitHub → **Settings → Pages → Custom domain** → `atozfesyen.com` → Save, then tick **Enforce HTTPS** once offered.
-3. **Settings → Secrets and variables → Actions → Variables** → add `CUSTOM_DOMAIN` = `atozfesyen.com`, then re-run the workflow.
-   The base path switches from `/atoz-fesyen-website` to `/` automatically.
+2. GitHub → **Settings → Pages → Custom domain** → enter the domain → Save, then tick **Enforce HTTPS**.
+3. **Settings → Secrets and variables → Actions → Variables** → add `CUSTOM_DOMAIN` = your domain, then re-run the workflow.
+   Links, the sitemap and canonical URLs switch to the new domain automatically.
 
 The site is a static export, so it also deploys unchanged to Vercel or Netlify if you ever switch.
 
 ## Photos
 
-Product photos come from *Katalog Pemborong 2026* (extracted from the compressed PDF, so they're ~350–600 px wide).
+Product photos are extracted from the full-resolution *Katalog Pemborong 2026* PDF (300 ppi, ~600–1400 px).
 For sharper product pages, replace files in `public/products/` with the original photos (same file names, 4:5 portrait,
 ≥1200 px, WebP or JPG), then run `npm run images`.
 
@@ -99,8 +102,8 @@ It covers 104 pages × desktop + mobile:
 
 ## Open questions for the business
 
-- Baju Melayu (AZ-M01/M02) sizes and AZ-M02 fabric aren't stated in the catalogue — add them to `src/data/catalog.ts` when confirmed.
-- Original high-resolution photos would make product pages sharper (see "Photos").
+- AZ-M02 (Teluk Belanga) fabric isn't stated in the catalogue — add it to `src/data/catalog.ts` when confirmed.
+- Adult sizes are S–5XL across the range (per the business); kids 4–16 years.
 
 ## Roadmap (next phases)
 

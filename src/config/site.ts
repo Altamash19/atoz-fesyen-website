@@ -4,7 +4,8 @@ export const site = {
   legalName: "A TO Z Fesyen Baru Sdn. Bhd.",
   registrationNo: "706666-K",
   foundedYear: 2005,
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://atozfesyen.com",
+  // Public address. The deploy workflow sets this; the fallback is the GitHub Pages address.
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://altamash19.github.io/atoz-fesyen-website",
 
   /** Main business WhatsApp — digits only, international format. */
   whatsapp: "601133492470",
