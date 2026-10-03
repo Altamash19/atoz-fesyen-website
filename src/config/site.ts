@@ -26,8 +26,8 @@ export const site = {
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=Kenanga+Wholesale+City+Jalan+Gelugor+Kuala+Lumpur",
 
   hours: {
-    en: "Monday – Saturday, 10:00 am – 6:00 pm",
-    ms: "Isnin – Sabtu, 10.00 pagi – 6.00 petang",
+    en: "Sun – Thu 10 am – 7 pm · Fri & Sat 10 am – 8 pm",
+    ms: "Ahad – Khamis 10 pagi – 7 malam · Jumaat & Sabtu 10 pagi – 8 malam",
   },
 
   social: {
