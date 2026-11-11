@@ -59,7 +59,7 @@ export function ShopView({ lang }: { lang: Locale }) {
               <Image src={floor.src} alt="" fill sizes="(min-width: 1024px) 260px, 40vw" className="object-cover" />
             </div>
             {/* Stamp */}
-            <div className="absolute top-[6%] left-[4%] grid h-24 w-24 -rotate-12 place-items-center rounded-full bg-gold text-center font-display leading-tight text-white shadow-lg sm:h-28 sm:w-28" aria-hidden="true">
+            <div className="absolute top-[6%] left-[4%] grid h-24 w-24 -rotate-12 place-items-center rounded-full bg-sage text-center font-display leading-tight text-night-deep shadow-lg sm:h-28 sm:w-28" aria-hidden="true">
               <span>
                 <span className="block text-[0.6rem] font-sans font-bold tracking-[0.2em] uppercase">Lot</span>
                 <span className="block text-3xl font-semibold sm:text-4xl">20</span>

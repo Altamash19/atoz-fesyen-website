@@ -9,7 +9,7 @@ export function ProductCard({ item, lang, priority = false, note }: { item: Cata
   return (
     <Link
       href={`/${lang}/products/${item.slug}/`}
-      className="group relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-white transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_-14px_rgb(13_67_51/0.35)]"
+      className="group relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-white transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_-14px_rgb(36_80_47/0.35)]"
       data-testid="product-card"
     >
       <div className="overflow-hidden">
@@ -18,7 +18,7 @@ export function ProductCard({ item, lang, priority = false, note }: { item: Cata
         </div>
       </div>
       {item.isNew && (
-        <span className="absolute top-3 left-3 rounded-full bg-gold px-2.5 py-1 text-[0.7rem] font-bold tracking-wide text-white uppercase">
+        <span className="absolute top-3 left-3 rounded-full bg-sage px-2.5 py-1 text-[0.7rem] font-bold tracking-wide text-night-deep uppercase">
           {t.products.newBadge}
         </span>
       )}

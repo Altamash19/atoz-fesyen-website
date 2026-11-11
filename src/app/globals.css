@@ -1,20 +1,27 @@
 @import "tailwindcss";
 
-/* Brand tokens — deep emerald, warm cream and a restrained gold accent. */
+/* Brand palette — taken from the A to Z logo.
+   Primary  · Forest     #24502f  buttons, links, headings
+   Secondary· Sage       #acd57d  the logo green: highlights, badges, accents on dark
+   Balance  · Moss Night #2a3128  dim olive-charcoal for header, footer and feature bands */
 @theme {
-  --color-ink: #1b2420;
-  --color-muted: #59645e;
-  --color-line: #e4dccb;
-  --color-cream: #faf7f0;
-  --color-sand: #f1eadb;
-  --color-brand-50: #eef6f2;
-  --color-brand-100: #d5eadf;
-  --color-brand-600: #17694f;
-  --color-brand-700: #115540;
-  --color-brand-800: #0d4333;
-  --color-brand-900: #0a3328;
-  --color-gold: #b07d2c;
-  --color-gold-soft: #f3e6cc;
+  --color-ink: #1b221c;
+  --color-muted: #566055;
+  --color-line: #dce2cf;
+  --color-cream: #f6f5ee;
+  --color-sand: #ebeedf;
+  --color-brand-50: #eff5e8;
+  --color-brand-100: #d9e9c7;
+  --color-brand-600: #2e6439;
+  --color-brand-700: #24502f;
+  --color-brand-800: #1c3f25;
+  --color-brand-900: #15301c;
+  --color-sage: #acd57d;
+  --color-sage-deep: #4d7a2a;
+  --color-night: #2a3128;
+  --color-night-deep: #1f251e;
+  --color-gold: #4d7a2a; /* legacy name: accent text on light backgrounds (= sage-deep) */
+  --color-gold-soft: #acd57d; /* legacy name: accent on dark backgrounds (= sage) */
   --color-whatsapp: #1fa855;
   --color-whatsapp-dark: #178a45;
 
@@ -47,7 +54,7 @@
     text-wrap: pretty;
   }
   :focus-visible {
-    outline: 2px solid var(--color-gold);
+    outline: 2px solid var(--color-sage-deep);
     outline-offset: 3px;
     border-radius: 6px;
   }
@@ -130,7 +137,14 @@
     color: var(--color-brand-800);
   }
   .btn-light:hover {
-    background: var(--color-gold-soft);
+    background: var(--color-brand-50);
+  }
+  .btn-sage {
+    background: var(--color-sage);
+    color: var(--color-night-deep);
+  }
+  .btn-sage:hover {
+    background: #bfe096;
   }
 
   .eyebrow {
@@ -169,10 +183,12 @@
   /* Subtle geometric motif used on dark brand panels. */
   .pattern-geo {
     background-image:
-      radial-gradient(circle at 1px 1px, rgb(255 255 255 / 0.09) 1px, transparent 0),
-      linear-gradient(135deg, var(--color-brand-800), var(--color-brand-900));
+      radial-gradient(circle at 1px 1px, rgb(172 213 125 / 0.08) 1px, transparent 0),
+      radial-gradient(120% 90% at 0% 0%, rgb(172 213 125 / 0.10), transparent 60%),
+      linear-gradient(160deg, var(--color-night), var(--color-night-deep));
     background-size:
       22px 22px,
+      100% 100%,
       100% 100%;
   }
 }

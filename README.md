@@ -66,6 +66,11 @@ atozfesyen.com is controlled by the previous developer. To use any domain you co
 
 The site is a static export, so it also deploys unchanged to Vercel or Netlify if you ever switch.
 
+## Brand
+
+Colours come from the logo (`src/app/globals.css`): **Forest** `#24502f` (primary), **Sage** `#acd57d` (secondary, the logo green), **Moss Night** `#2a3128` (balancing dark tone for header, footer and feature panels).
+Logo files are in `public/brand/` (light on transparent, so place them on a dark surface).
+
 ## Photos
 
 Product photos are extracted from the full-resolution *Katalog Pemborong 2026* PDF (300 ppi, ~600–1400 px).

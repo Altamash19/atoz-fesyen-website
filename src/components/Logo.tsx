@@ -1,20 +1,30 @@
-/** Text-based wordmark. Swap for the official logo file when available (put it in /public). */
-export function Logo({ inverted = false }: { inverted?: boolean }) {
+import { basePath } from "@/lib/images";
+
+/**
+ * Official A to Z logo (light sage on transparent — always place it on a dark surface).
+ * - "emblem": ornament + "A to Z" plate, for the header, with a text name beside it.
+ * - "full":   the complete stacked logo, for the footer and brand panels.
+ */
+export function Logo({ variant = "emblem", className = "" }: { variant?: "emblem" | "full"; className?: string }) {
+  if (variant === "full") {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={`${basePath}/brand/logo-full.webp`}
+        width={480}
+        height={620}
+        alt="A to Z Fesyen Baru Sdn Bhd — Importer, Exporter & Manufacturer"
+        className={`h-auto w-40 ${className}`}
+      />
+    );
+  }
   return (
-    <span className="flex items-center gap-2.5">
-      <span
-        aria-hidden="true"
-        className={`grid h-10 w-10 place-items-center rounded-xl font-display text-[0.95rem] font-bold tracking-tight ${
-          inverted ? "bg-white text-brand-800" : "bg-brand-700 text-white"
-        }`}
-      >
-        A–Z
-      </span>
-      <span className="flex flex-col leading-none">
-        <span className={`font-display text-lg font-semibold ${inverted ? "text-white" : "text-ink"}`}>A TO Z Fesyen</span>
-        <span className={`mt-1 text-[0.65rem] font-semibold tracking-[0.2em] uppercase ${inverted ? "text-gold-soft" : "text-gold"}`}>
-          Baru · Est. 2005
-        </span>
+    <span className={`flex items-center gap-3 ${className}`}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={`${basePath}/brand/logo-emblem.webp`} width={243} height={200} alt="" aria-hidden="true" className="h-12 w-auto md:h-14" />
+      <span className="hidden flex-col leading-none sm:flex">
+        <span className="font-display text-lg font-semibold text-white">A to Z</span>
+        <span className="mt-1 text-[0.65rem] font-semibold tracking-[0.2em] text-sage uppercase">Fesyen Baru</span>
       </span>
     </span>
   );

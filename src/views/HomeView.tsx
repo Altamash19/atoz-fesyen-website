@@ -88,7 +88,7 @@ export function HomeView({ lang }: { lang: Locale }) {
                   href={`/${lang}/category/${c.id}/`}
                   className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-white transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-900/10"
                 >
-                  <div className="relative aspect-[5/4] overflow-hidden bg-[#efebe3]">
+                  <div className="relative aspect-[5/4] overflow-hidden bg-[#eceee5]">
                     <Image src={img.src} alt="" fill sizes="(min-width: 1024px) 300px, 50vw" className="object-cover object-top transition duration-500 group-hover:scale-105" />
                   </div>
                   <div className="flex flex-1 flex-col p-4">
@@ -164,7 +164,7 @@ export function HomeView({ lang }: { lang: Locale }) {
         >
           <div className="relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[26rem]">
             <Image src={shopPhoto.src} alt={t.shop.alts["shop-front"]} fill sizes="(min-width: 768px) 55vw, 100vw" className="object-cover transition duration-700 group-hover:scale-105" style={{ objectPosition: "50% 35%" }} />
-            <span className="absolute top-4 left-4 grid h-20 w-20 -rotate-12 place-items-center rounded-full bg-gold text-center font-display leading-tight text-white shadow-lg" aria-hidden="true">
+            <span className="absolute top-4 left-4 grid h-20 w-20 -rotate-12 place-items-center rounded-full bg-sage text-center font-display leading-tight text-night-deep shadow-lg" aria-hidden="true">
               <span>
                 <span className="block font-sans text-[0.55rem] font-bold tracking-[0.2em] uppercase">Lot</span>
                 <span className="block text-2xl font-semibold">20</span>

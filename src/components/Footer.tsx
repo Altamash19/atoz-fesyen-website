@@ -15,7 +15,7 @@ export function Footer({ lang }: { lang: Locale }) {
     <footer className="pattern-geo mt-20 text-white/85">
       <div className="container-page grid gap-10 py-14 md:grid-cols-12">
         <div className="md:col-span-5">
-          <Logo inverted />
+          <Logo variant="full" />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">{t.footer.tagline}</p>
           <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp mt-6">
             <WhatsAppIcon /> {t.cta.whatsapp}

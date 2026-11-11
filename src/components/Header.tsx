@@ -45,7 +45,7 @@ export function Header({ lang }: { lang: Locale }) {
 
   return (
     <>
-    <header className="sticky top-0 z-40 border-b border-line/80 bg-cream/90 backdrop-blur supports-[backdrop-filter]:bg-cream/75">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-night/95 backdrop-blur supports-[backdrop-filter]:bg-night/85">
       <div className="container-page flex h-16 items-center justify-between gap-4 md:h-[4.5rem]">
         <Link href={`/${lang}/`} className="shrink-0" aria-label="A TO Z Fesyen Baru — home">
           <Logo />
@@ -58,8 +58,8 @@ export function Header({ lang }: { lang: Locale }) {
                 <Link
                   href={l.href}
                   aria-current={isActive(l.href) ? "page" : undefined}
-                  className={`rounded-full px-3 py-2 text-[0.95rem] whitespace-nowrap xl:px-3.5 font-medium transition hover:bg-sand ${
-                    isActive(l.href) ? "text-brand-700" : "text-ink/80"
+                  className={`rounded-full px-3 py-2 text-[0.95rem] whitespace-nowrap xl:px-3.5 font-medium transition hover:bg-white/10 hover:text-white ${
+                    isActive(l.href) ? "text-sage" : "text-white/80"
                   }`}
                 >
                   {l.label}
@@ -70,7 +70,7 @@ export function Header({ lang }: { lang: Locale }) {
         </nav>
 
         <div className="flex items-center gap-2">
-          <LanguageSwitcher lang={lang} className="hidden sm:flex" />
+          <LanguageSwitcher lang={lang} dark className="hidden sm:flex" />
           <a
             href={whatsappLink()}
             target="_blank"
@@ -82,7 +82,7 @@ export function Header({ lang }: { lang: Locale }) {
           </a>
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-ink hover:bg-sand lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white hover:bg-white/10 lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? t.nav.close : t.nav.menu}

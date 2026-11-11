@@ -67,7 +67,7 @@ export function ProductDetail({ lang, item, gallery, swatches = [], url }: Props
       {/* Gallery */}
       <div className="md:sticky md:top-24 md:self-start">
         {current && (
-          <div className="flex justify-center overflow-hidden rounded-[1.5rem] border border-line bg-[#efebe3]">
+          <div className="flex justify-center overflow-hidden rounded-[1.5rem] border border-line bg-[#eceee5]">
             <Image
               key={current.src}
               src={current.src}
@@ -91,7 +91,7 @@ export function ProductDetail({ lang, item, gallery, swatches = [], url }: Props
                   aria-pressed={i === index}
                   aria-label={g.label ?? `${t.product.photo} ${i + 1}`}
                   title={g.label}
-                  className={`relative block h-16 w-14 overflow-hidden rounded-lg border-2 bg-[#efebe3] transition sm:h-20 sm:w-16 ${
+                  className={`relative block h-16 w-14 overflow-hidden rounded-lg border-2 bg-[#eceee5] transition sm:h-20 sm:w-16 ${
                     i === index ? "border-brand-700" : "border-transparent opacity-80 hover:opacity-100"
                   }`}
                 >
@@ -112,12 +112,12 @@ export function ProductDetail({ lang, item, gallery, swatches = [], url }: Props
         <h1 className="mt-3 text-4xl leading-tight font-semibold text-brand-900 md:text-[2.75rem]">{item.name}</h1>
         <p className="mt-2 text-lg text-ink/70">{item.tagline[lang]}</p>
         {item.isNew && (
-          <span className="mt-3 inline-block rounded-full bg-gold px-3 py-1 text-xs font-bold tracking-wide text-white uppercase">
+          <span className="mt-3 inline-block rounded-full bg-sage px-3 py-1 text-xs font-bold tracking-wide text-night-deep uppercase">
             {t.products.newBadge}
           </span>
         )}
 
-        <div className="mt-5 rounded-card border border-gold/40 bg-gold-soft/40 px-5 py-4" data-testid="price-block">
+        <div className="mt-5 rounded-card border border-sage bg-brand-50 px-5 py-4" data-testid="price-block">
           {item.price ? (
             <>
               <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">

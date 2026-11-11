@@ -25,7 +25,7 @@ export function ProductImage({ item, lang, priority = false }: Props) {
     const ratio = img.width / img.height;
     const fit = item.coverFocus ? "object-cover" : ratio > 1.02 ? "object-contain" : ratio < 0.6 ? "object-cover object-top" : "object-cover";
     return (
-      <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#efebe3]">
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#eceee5]">
         <Image
           src={img.src}
           alt={alt}
