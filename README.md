@@ -3,8 +3,8 @@
 Bilingual (English / Bahasa Melayu) wholesale catalogue for **A TO Z Fesyen Baru Sdn. Bhd.**
 Built with **Next.js (App Router, static export) + React + Tailwind CSS v4**, deployed on **GitHub Pages**.
 
-**Business goal:** turn website visitors into WhatsApp enquiries and wholesale quote requests.
-There is no cart or checkout. Wholesale pricing depends on quantity, so every product leads to a pre-filled WhatsApp chat.
+**Business goal:** turn website visitors into WhatsApp orders and wholesale enquiries.
+There is no cart or checkout. Every product shows its wholesale (borong) and RRP (runcit) price from the catalogue price list and leads to a pre-filled WhatsApp chat.
 
 ## What's included
 
@@ -77,7 +77,7 @@ For sharper product pages, replace files in `public/products/` with the original
 - **Add a product:** add a line to `products` in `src/data/catalog.ts`. The slug must be unique, lowercase and hyphenated.
 - **Add a collection or category:** add it to `collections` or `categories` in the same file.
 - **Change wording:** all text lives in `src/i18n/dictionaries.ts`, with the English and Malay versions next to each other.
-- Prices and stock quantities are **intentionally not stored** in the site code, because it is public.
+- **Prices** live on each product in `src/data/catalog.ts` (`price: P(wholesale, retail)`, or `priceStatus: "request" | "preorder"`). The price list page (`/prices/`) is generated from the same data.
 
 ## Testing
 

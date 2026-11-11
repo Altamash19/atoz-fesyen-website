@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { ProductCard } from "@/components/ProductCard";
-import { ProductDetail, type GalleryImage } from "@/components/ProductDetail";
+import { ProductDetail, type GalleryImage, type Swatch } from "@/components/ProductDetail";
 import { site } from "@/config/site";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -34,6 +34,11 @@ export function ProductView({ lang, item }: { lang: Locale; item: CatalogItem })
     }
   }
 
+  const swatches: Swatch[] = (item.shades ?? []).flatMap((s) => {
+    const img = s.swatch ? getImage(s.swatch) : undefined;
+    return img ? [{ no: s.no, src: img.src }] : [];
+  });
+
   return (
     <div className="container-page py-8 md:py-12">
       <Breadcrumbs
@@ -46,7 +51,7 @@ export function ProductView({ lang, item }: { lang: Locale; item: CatalogItem })
       />
 
       <article className="mt-6">
-        <ProductDetail lang={lang} item={item} gallery={gallery} url={url} />
+        <ProductDetail lang={lang} item={item} gallery={gallery} swatches={swatches} url={url} />
       </article>
 
       {related.length > 0 && (
@@ -81,6 +86,18 @@ export function ProductView({ lang, item }: { lang: Locale; item: CatalogItem })
           ...(gallery.length ? { image: gallery.slice(0, 6).map((g) => absoluteUrl(g.src)) } : {}),
           brand: { "@type": "Brand", name: site.name },
           ...(item.fabric ? { material: item.fabric } : {}),
+          ...(item.price
+            ? {
+                offers: {
+                  "@type": "Offer",
+                  priceCurrency: "MYR",
+                  price: item.price.retail ?? item.price.wholesale,
+                  availability: item.priceStatus === "preorder" ? "https://schema.org/PreOrder" : "https://schema.org/InStock",
+                  url,
+                  seller: { "@type": "Organization", name: site.legalName },
+                },
+              }
+            : {}),
         }}
       />
       <JsonLd

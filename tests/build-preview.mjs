@@ -97,6 +97,7 @@ for (const { lang } of server.langParams()) {
   pages.push({ path: `/${lang}`, route: "home", params: { lang } });
   pages.push({ path: `/${lang}/products`, route: "products", params: { lang } });
   pages.push({ path: `/${lang}/shop`, route: "shop", params: { lang } });
+  pages.push({ path: `/${lang}/prices`, route: "prices", params: { lang } });
   pages.push({ path: `/${lang}/wholesale`, route: "wholesale", params: { lang } });
   pages.push({ path: `/${lang}/about`, route: "about", params: { lang } });
   pages.push({ path: `/${lang}/contact`, route: "contact", params: { lang } });

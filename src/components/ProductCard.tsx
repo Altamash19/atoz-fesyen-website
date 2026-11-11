@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import type { CatalogItem } from "@/lib/catalog";
+import { formatRM, type CatalogItem } from "@/lib/catalog";
 import { ProductImage } from "./ProductImage";
 
 export function ProductCard({ item, lang, priority = false, note }: { item: CatalogItem; lang: Locale; priority?: boolean; note?: string }) {
@@ -26,6 +26,17 @@ export function ProductCard({ item, lang, priority = false, note }: { item: Cata
         <p className="text-[0.7rem] font-semibold tracking-wider text-gold uppercase">{item.code ?? item.collectionData.name[lang]}</p>
         <h3 className="font-display text-[1.05rem] leading-snug font-semibold text-ink sm:text-lg">{item.name}</h3>
         <p className="text-sm leading-snug text-muted">{note ?? item.tagline[lang]}</p>
+        <p className="mt-1.5 text-sm" data-testid="card-price">
+          {item.price ? (
+            <>
+              <span className="font-semibold text-brand-800">{formatRM(item.price.wholesale)}</span>
+              <span className="text-muted"> {t.product.wholesale.toLowerCase()}</span>
+              {item.price.retail && <span className="text-muted"> · {t.product.retail} {formatRM(item.price.retail)}</span>}
+            </>
+          ) : (
+            <span className="font-medium text-gold">{item.priceStatus === "preorder" ? t.product.preorder : t.product.priceOnRequest}</span>
+          )}
+        </p>
         <span className="mt-auto pt-2 text-sm font-semibold text-brand-700 group-hover:underline">{t.cta.viewProduct} →</span>
       </div>
     </Link>

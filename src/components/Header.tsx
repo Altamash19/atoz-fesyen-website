@@ -17,6 +17,7 @@ export function Header({ lang }: { lang: Locale }) {
 
   const links = [
     { href: `/${lang}/products/`, label: t.nav.products },
+    { href: `/${lang}/prices/`, label: t.prices.nav },
     { href: `/${lang}/shop/`, label: t.shop.nav },
     { href: `/${lang}/wholesale/`, label: t.nav.wholesale },
     { href: `/${lang}/about/`, label: t.nav.about },
@@ -50,14 +51,14 @@ export function Header({ lang }: { lang: Locale }) {
           <Logo />
         </Link>
 
-        <nav aria-label="Main" className="hidden md:block">
-          <ul className="flex items-center gap-1 lg:gap-2">
+        <nav aria-label="Main" className="hidden lg:block">
+          <ul className="flex items-center gap-0.5 xl:gap-2">
             {links.map((l) => (
               <li key={l.href}>
                 <Link
                   href={l.href}
                   aria-current={isActive(l.href) ? "page" : undefined}
-                  className={`rounded-full px-3.5 py-2 text-[0.95rem] font-medium transition hover:bg-sand ${
+                  className={`rounded-full px-3 py-2 text-[0.95rem] whitespace-nowrap xl:px-3.5 font-medium transition hover:bg-sand ${
                     isActive(l.href) ? "text-brand-700" : "text-ink/80"
                   }`}
                 >
@@ -74,14 +75,14 @@ export function Header({ lang }: { lang: Locale }) {
             href={whatsappLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-whatsapp hidden !min-h-10 !px-4 !py-2 text-sm lg:inline-flex"
+            className="btn btn-whatsapp hidden !min-h-10 !px-4 !py-2 text-sm xl:inline-flex"
           >
             <WhatsAppIcon width={18} height={18} />
             {t.cta.whatsapp}
           </a>
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-ink hover:bg-sand md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-ink hover:bg-sand lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? t.nav.close : t.nav.menu}
@@ -98,7 +99,7 @@ export function Header({ lang }: { lang: Locale }) {
       <div
         id="mobile-menu"
         hidden={!open}
-        className="fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto border-t border-line bg-cream md:hidden"
+        className="fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto border-t border-line bg-cream lg:hidden"
       >
         <nav aria-label="Mobile" className="container-page py-6">
           <ul className="flex flex-col">

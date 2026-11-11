@@ -76,3 +76,8 @@ export function countByCategory(): Record<CategoryId, number> {
 
 export type { Locale };
 export { categories, collections };
+
+/** "RM 20" */
+export function formatRM(n: number): string {
+  return `RM ${Number.isInteger(n) ? n : n.toFixed(2)}`;
+}

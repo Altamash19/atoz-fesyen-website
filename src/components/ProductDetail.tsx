@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import type { CatalogItem } from "@/lib/catalog";
+import { formatRM, type CatalogItem } from "@/lib/catalog";
 import { whatsappLink } from "@/lib/whatsapp";
 import { CheckIcon, WhatsAppIcon } from "./icons";
 
@@ -17,21 +17,41 @@ export interface GalleryImage {
   label?: string;
 }
 
+export interface Swatch {
+  no: string;
+  src: string;
+}
+
 interface Props {
   lang: Locale;
   item: CatalogItem;
   gallery: GalleryImage[];
+  swatches?: Swatch[];
   url: string;
 }
 
 /** Product photo gallery + shade picker + WhatsApp enquiry buttons (shade is included in the message). */
-export function ProductDetail({ lang, item, gallery, url }: Props) {
+export function ProductDetail({ lang, item, gallery, swatches = [], url }: Props) {
   const t = getDictionary(lang);
   const [index, setIndex] = useState(0);
+  const [picked, setPicked] = useState<string | null>(null);
   const current = gallery[index];
-  const shade = item.shades?.find((s) => s.no === current?.shade);
+  // The selected option: the one clicked, else the one the current photo shows.
+  const shade = item.shades?.find((s) => s.no === (picked ?? current?.shade));
+  const optionLabel = item.optionLabel?.[lang] ?? t.product.shade;
   const label = item.code ? `${item.name} (${item.code})` : item.name;
-  const subject = shade ? `${label} — ${t.product.shade} ${shade.no} ${shade.name[lang]}` : label;
+  const subject = shade ? `${label} — ${optionLabel} ${shade.no} ${shade.name[lang]}` : label;
+  const swatchFor = (no: string) => swatches.find((s) => s.no === no)?.src;
+
+  const showPhoto = (i: number) => {
+    setIndex(i);
+    setPicked(gallery[i]?.shade ?? null);
+  };
+  const pickOption = (no: string) => {
+    setPicked(no);
+    const gi = gallery.findIndex((g) => g.shade === no);
+    if (gi >= 0) setIndex(gi);
+  };
 
   const specs: { label: string; value: string }[] = [
     ...(item.code ? [{ label: t.product.code, value: item.code }] : []),
@@ -39,7 +59,6 @@ export function ProductDetail({ lang, item, gallery, url }: Props) {
     ...(item.fabric ? [{ label: t.product.fabric, value: item.fabric }] : []),
     { label: t.product.sizes, value: item.sizes[lang] },
     ...(item.colours ? [{ label: t.product.colours, value: item.colours[lang] }] : []),
-    { label: t.product.price, value: t.product.priceValue },
     { label: t.product.moq, value: t.product.moqValue },
   ];
 
@@ -68,7 +87,7 @@ export function ProductDetail({ lang, item, gallery, url }: Props) {
               <li key={g.src}>
                 <button
                   type="button"
-                  onClick={() => setIndex(i)}
+                  onClick={() => showPhoto(i)}
                   aria-pressed={i === index}
                   aria-label={g.label ?? `${t.product.photo} ${i + 1}`}
                   title={g.label}
@@ -98,26 +117,59 @@ export function ProductDetail({ lang, item, gallery, url }: Props) {
           </span>
         )}
 
+        <div className="mt-5 rounded-card border border-gold/40 bg-gold-soft/40 px-5 py-4" data-testid="price-block">
+          {item.price ? (
+            <>
+              <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
+                <p>
+                  <span className="block text-xs font-semibold tracking-wider text-gold uppercase">{t.product.wholesale}</span>
+                  <span className="font-display text-3xl font-semibold text-brand-900">{formatRM(item.price.wholesale)}</span>
+                  <span className="ml-1 text-sm text-muted">/ {t.product.perPiece}</span>
+                </p>
+                {item.price.retail && (
+                  <p>
+                    <span className="block text-xs font-semibold tracking-wider text-muted uppercase">{t.product.retail}</span>
+                    <span className="font-display text-2xl font-semibold text-ink/70">{formatRM(item.price.retail)}</span>
+                  </p>
+                )}
+              </div>
+              <p className="mt-2 text-xs leading-relaxed text-muted">{t.product.priceNote}</p>
+            </>
+          ) : (
+            <>
+              <p className="font-display text-2xl font-semibold text-brand-900">
+                {item.priceStatus === "preorder" ? t.product.preorder : t.product.priceOnRequest}
+              </p>
+              <p className="mt-1 text-sm text-muted">{item.priceStatus === "preorder" ? t.product.preorderNote : t.product.requestNote}</p>
+            </>
+          )}
+        </div>
+
         <p className="mt-5 text-[1.05rem] leading-relaxed text-muted">{item.description[lang]}</p>
 
         {item.shades && (
           <fieldset className="mt-6">
             <legend className="text-sm font-semibold text-ink">
-              {t.product.shade}: <span className="font-normal text-muted" data-testid="shade-name">{shade ? `${shade.no} · ${shade.name[lang]}` : t.product.pickShade}</span>
+              {optionLabel}:{" "}
+              <span className="font-normal text-muted" data-testid="shade-name">
+                {shade ? `${shade.no} · ${shade.name[lang]}` : `${t.product.pickShade}`}
+              </span>
             </legend>
             <div className="mt-3 flex flex-wrap gap-2">
               {item.shades.map((s) => {
-                const gi = gallery.findIndex((g) => g.shade === s.no);
+                const sw = swatchFor(s.no);
+                const selected = shade?.no === s.no;
                 return (
                   <button
                     key={s.no}
                     type="button"
-                    onClick={() => gi >= 0 && setIndex(gi)}
-                    aria-pressed={shade?.no === s.no}
-                    className={`rounded-full border px-3 py-1.5 text-sm transition ${
-                      shade?.no === s.no ? "border-brand-700 bg-brand-700 text-white" : "border-line bg-white text-ink hover:border-brand-600"
+                    onClick={() => pickOption(s.no)}
+                    aria-pressed={selected}
+                    className={`inline-flex items-center gap-2 rounded-full border py-1.5 pr-3 text-sm transition ${sw ? "pl-1.5" : "pl-3"} ${
+                      selected ? "border-brand-700 bg-brand-700 text-white" : "border-line bg-white text-ink hover:border-brand-600"
                     }`}
                   >
+                    {sw && <img src={sw} alt="" className="h-6 w-6 rounded-full object-cover ring-1 ring-black/10" />}
                     {s.no} {s.name[lang]}
                   </button>
                 );
@@ -127,7 +179,7 @@ export function ProductDetail({ lang, item, gallery, url }: Props) {
         )}
 
         <p className="mt-6 flex items-center gap-2 text-sm font-medium text-brand-700">
-          <CheckIcon width={18} height={18} /> {t.product.availabilityValue}
+          <CheckIcon width={18} height={18} /> {item.priceStatus === "preorder" ? t.product.preorderAvailability : t.product.availabilityValue}
         </p>
 
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">

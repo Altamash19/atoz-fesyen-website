@@ -4,7 +4,7 @@ const en = {
   meta: {
     title: "A TO Z Fesyen Baru — Kurta, Jubbah & Baju Kurung Wholesaler, Kuala Lumpur",
     description:
-      "Wholesale traditional textile since 2005 at Kenanga Wholesale City, Kuala Lumpur: cotton kurta and jubbah for men and boys, baju Melayu, baju kurung and kaftan batik. Ready stock, no minimum order — enquire on WhatsApp.",
+      "Wholesale traditional textile since 2005 at Kenanga Wholesale City, Kuala Lumpur: cotton kurta and jubbah for men and boys, baju Melayu, baju kurung and kaftan batik. Ready stock with wholesale prices listed — order on WhatsApp.",
   },
   nav: {
     home: "Home",
@@ -30,7 +30,7 @@ const en = {
     eyebrow: "Katalog Pemborong 2026 · Kenanga Wholesale City",
     title: "Kurta, jubbah & baju kurung — wholesale since 2005.",
     subtitle:
-      "Cotton kurta and jubbah for men and boys, baju Melayu, and the ladies kurung range — supplied to retailers, agents and distributors from Kuala Lumpur. Every design is ready stock, with no minimum order.",
+      "Cotton kurta and jubbah for men and boys, baju Melayu, and the ladies kurung range — supplied to retailers, agents and distributors from Kuala Lumpur. Every design is ready stock, with wholesale and retail prices listed for every piece.",
     stats: { designs: "designs", sizes: "men's sizes", years: "years trading" },
     categoriesTitle: "Shop by range",
     startTitle: "Start here",
@@ -41,7 +41,7 @@ const en = {
     fabricsLink: "See fabrics & sampin",
     whyTitle: "Why retailers buy from A TO Z",
     why: [
-      { title: "No minimum order", text: "Order one piece or a hundred. Mix sizes, colours and designs however your shop sells." },
+      { title: "One set per design", text: "Minimum order is one set per design — one piece in each size. Order as many sets as you need and mix colours across designs." },
       { title: "Ready stock", text: "Whatever is on the floor can go out the same week. New designs take 30 to 45 days." },
       { title: "Numbered colour cards", text: "Quote the design code and swatch number — a reorder returns the same cloth." },
       { title: "Father-and-son sets", text: "Boys' jubbah and kurta in the same fabrics and colour cards as the men's." },
@@ -61,7 +61,7 @@ const en = {
   },
   products: {
     title: "Catalogue",
-    subtitle: "Every design is ready stock. Prices are quoted directly — quote the design code and shade number when you message us.",
+    subtitle: "Every design is ready stock. Prices are per piece — wholesale (borong) and suggested retail (RRP). Quote the design code and shade number when you message us.",
     all: "All",
     search: "Search the catalogue",
     searchPlaceholder: "Search name, code or fabric — e.g. K06, jubah, Scorpio",
@@ -80,13 +80,23 @@ const en = {
     sizes: "Sizes",
     colours: "Colours",
     shade: "Shade",
-    pickShade: "choose a shade",
+    pickShade: "choose one",
     photos: "Photos",
     photo: "Photo",
     price: "Price",
-    priceValue: "Quoted directly — prices move with the fabric",
+    priceValue: "See price above",
+    wholesale: "Wholesale",
+    retail: "RRP",
+    perPiece: "per piece",
+    priceOnRequest: "Price on request",
+    preorder: "Pre-order only",
+    priceNote: "Wholesale (borong) is what you pay us per piece. RRP (runcit) is our suggested shelf price.",
+    requestNote: "Ask us on WhatsApp for the current price.",
+    preorderNote: "Made to order — 30 to 45 days from confirmation.",
+    preorderAvailability: "Made to order — pre-order only",
+    from: "from",
     moq: "Minimum order",
-    moqValue: "No minimum — mix sizes and colours freely",
+    moqValue: "One set per design — one piece in each size",
     availabilityValue: "Ready stock — available for retail and wholesale",
     howTo: "How to order",
     howToText:
@@ -94,18 +104,18 @@ const en = {
     related: "More from this range",
     metaSuffix: "Wholesale from A TO Z Fesyen Baru, Kenanga Wholesale City, Kuala Lumpur.",
     message: (name: string, url: string) =>
-      `Hi A TO Z Fesyen, I'm interested in: ${name}\n${url}\n\nCould you share the price, sizes and colours available?`,
+      `Hi A TO Z Fesyen, I'm interested in: ${name}\n${url}\n\nCould you confirm stock, sizes and colours?`,
     quoteMessage: (name: string, url: string) =>
       `Hi A TO Z Fesyen, I'd like a WHOLESALE quote for: ${name}\n${url}\n\nQuantity: \nSizes: \nShade numbers: `,
   },
   wholesale: {
     title: "How to order",
     subtitle:
-      "There is no minimum order. Tell us what you want and how many, and we'll talk it through — over the phone, over text, or across a table with the cloth in front of you.",
+      "Our minimum order is one set per design: one piece in each size. Tell us which designs and shades you want and we'll talk it through — over the phone, over text, or across a table with the cloth in front of you.",
     termsTitle: "Wholesale terms",
     terms: [
-      { k: "Quantity", v: "No minimum. Order one piece or a hundred; mix sizes, colours and designs however your shop sells." },
-      { k: "Price", v: "Discussed directly — by text or in a meeting. Prices move with the fabric, so we would rather quote you honestly than print a number that goes stale." },
+      { k: "Minimum order", v: "One set per design — one piece in each size of the range (for example S, M, L, XL, XXL). Children's designs: one piece in each age, 4 to 16. Order as many sets as you need, and mix colours across designs." },
+      { k: "Price", v: "Wholesale (borong) and suggested retail (RRP) prices per piece are in our price list. For designs marked price on request, ask us on WhatsApp. Prices move with the fabric, so we confirm the final price on the invoice." },
       { k: "Deposit", v: "30% to 50% to start the order, the balance before it leaves us." },
       { k: "Ready stock", v: "Whatever is on the floor can go out the same week." },
       { k: "New orders", v: "New designs and made-to-order runs take 30 to 45 days from confirmation." },
@@ -142,7 +152,7 @@ const en = {
     values: [
       { title: "Fabric first", text: "Scorpio, China Cotton, Royal Cotton, Marhaba and Cotton Sulam — chosen before the design." },
       { title: "Same shade, every time", text: "Fixed, numbered colour cards so reorders match the stock already on your shelf." },
-      { title: "Honest dealing", text: "Prices quoted directly, every order invoiced, retailers always welcome to walk in." },
+      { title: "Honest dealing", text: "Prices published, every order invoiced, retailers always welcome to walk in." },
     ],
     nextGenTitle: "Meet the next generation",
     nextGenName: "Syed Altamash Ali — Creative & Digital Lead",
@@ -183,7 +193,7 @@ const en = {
     whatsappAhead: "WhatsApp before you come",
     stats: [
       { v: "Since 2005", l: "in the same building" },
-      { v: "29", l: "designs on the floor" },
+      { v: "36", l: "designs on the floor" },
       { v: "53+", l: "colourways in stock" },
       { v: "S – 4XL", l: "men S–4XL, ladies S–3XL, kids 4–16" },
     ],
@@ -219,6 +229,24 @@ const en = {
     ctaTitle: "Coming in to buy stock?",
     ctaText: "Send us your design codes and sizes on WhatsApp before you come, and we'll have them pulled and ready when you arrive.",
   },
+  prices: {
+    nav: "Price list",
+    title: "Price list",
+    subtitle: "Every design by code, price per piece. Wholesale (borong) is what you pay us; RRP (runcit) is our suggested shelf price.",
+    code: "Code",
+    design: "Design",
+    wholesale: "Wholesale",
+    retail: "RRP",
+    request: "On request",
+    preorder: "Pre-order",
+    whitePutih: "Jubbah Putih — any design (white)",
+    notes: [
+      "Minimum order is one set per design — one piece in each size.",
+      "Osaka, Cotton Linen and Kotak Besar are made to pre-order (30–45 days).",
+      "Prices marked on request — ask us on WhatsApp. Final prices are confirmed on your invoice.",
+    ],
+    download: "Ask for the full catalogue (PDF) on WhatsApp",
+  },
   notFound: {
     title: "Page not found",
     text: "The page you're looking for doesn't exist or has moved.",
@@ -232,7 +260,7 @@ const ms: Dictionary = {
   meta: {
     title: "A TO Z Fesyen Baru — Pemborong Kurta, Jubah & Baju Kurung, Kuala Lumpur",
     description:
-      "Borong tekstil tradisional sejak 2005 di Kenanga Wholesale City, Kuala Lumpur: kurta dan jubah kapas untuk lelaki dan kanak-kanak, baju Melayu, baju kurung dan kaftan batik. Stok sedia ada, tiada minimum tempahan — hubungi kami di WhatsApp.",
+      "Borong tekstil tradisional sejak 2005 di Kenanga Wholesale City, Kuala Lumpur: kurta dan jubah kapas untuk lelaki dan kanak-kanak, baju Melayu, baju kurung dan kaftan batik. Stok sedia ada dengan harga borong tersenarai — tempah melalui WhatsApp.",
   },
   nav: {
     home: "Utama",
@@ -258,7 +286,7 @@ const ms: Dictionary = {
     eyebrow: "Katalog Pemborong 2026 · Kenanga Wholesale City",
     title: "Kurta, jubah & baju kurung — borong sejak 2005.",
     subtitle:
-      "Kurta dan jubah kapas untuk lelaki dan kanak-kanak, baju Melayu, dan rangkaian baju kurung wanita — dibekalkan kepada peruncit, ejen dan pengedar dari Kuala Lumpur. Semua rekaan stok sedia ada, tiada minimum tempahan.",
+      "Kurta dan jubah kapas untuk lelaki dan kanak-kanak, baju Melayu, dan rangkaian baju kurung wanita — dibekalkan kepada peruncit, ejen dan pengedar dari Kuala Lumpur. Semua rekaan stok sedia ada, dengan harga borong dan runcit untuk setiap helai.",
     stats: { designs: "rekaan", sizes: "saiz lelaki", years: "tahun berniaga" },
     categoriesTitle: "Pilih mengikut rangkaian",
     startTitle: "Mula di sini",
@@ -269,7 +297,7 @@ const ms: Dictionary = {
     fabricsLink: "Lihat fabrik & sampin",
     whyTitle: "Mengapa peruncit membeli dari A TO Z",
     why: [
-      { title: "Tiada minimum", text: "Tempah sehelai atau seratus. Campur saiz, warna dan rekaan mengikut jualan kedai anda." },
+      { title: "Satu set setiap rekaan", text: "Minimum tempahan ialah satu set setiap rekaan — sehelai bagi setiap saiz. Tempah seberapa banyak set dan campur warna antara rekaan." },
       { title: "Stok sedia ada", text: "Apa yang ada di lantai kedai boleh dihantar minggu yang sama. Rekaan baharu mengambil 30 hingga 45 hari." },
       { title: "Kad warna bernombor", text: "Nyatakan kod rekaan dan nombor warna — tempahan semula mendapat kain yang sama." },
       { title: "Set ayah & anak", text: "Jubah dan kurta budak dalam fabrik dan kad warna yang sama dengan lelaki dewasa." },
@@ -289,7 +317,7 @@ const ms: Dictionary = {
   },
   products: {
     title: "Katalog",
-    subtitle: "Semua rekaan stok sedia ada. Harga diberi terus — nyatakan kod rekaan dan nombor warna apabila menghubungi kami.",
+    subtitle: "Semua rekaan stok sedia ada. Harga sehelai — borong dan runcit (cadangan harga jualan). Nyatakan kod rekaan dan nombor warna apabila menghubungi kami.",
     all: "Semua",
     search: "Cari dalam katalog",
     searchPlaceholder: "Cari nama, kod atau fabrik — cth. K06, jubah, Scorpio",
@@ -308,13 +336,23 @@ const ms: Dictionary = {
     sizes: "Saiz",
     colours: "Warna",
     shade: "Warna",
-    pickShade: "pilih warna",
+    pickShade: "pilih satu",
     photos: "Gambar",
     photo: "Gambar",
     price: "Harga",
-    priceValue: "Diberi terus — harga berubah mengikut fabrik",
+    priceValue: "Lihat harga di atas",
+    wholesale: "Borong",
+    retail: "Runcit",
+    perPiece: "sehelai",
+    priceOnRequest: "Harga atas permintaan",
+    preorder: "Pre-order sahaja",
+    priceNote: "Borong ialah harga yang anda bayar kepada kami sehelai. Runcit ialah cadangan harga jualan di kedai.",
+    requestNote: "Tanya kami di WhatsApp untuk harga semasa.",
+    preorderNote: "Dibuat mengikut tempahan — 30 hingga 45 hari dari pengesahan.",
+    preorderAvailability: "Dibuat mengikut tempahan — pre-order sahaja",
+    from: "dari",
     moq: "Minimum tempahan",
-    moqValue: "Tiada minimum — campur saiz dan warna",
+    moqValue: "Satu set setiap rekaan — sehelai bagi setiap saiz",
     availabilityValue: "Stok sedia ada — untuk runcit dan borong",
     howTo: "Cara membuat tempahan",
     howToText:
@@ -322,18 +360,18 @@ const ms: Dictionary = {
     related: "Lagi dari rangkaian ini",
     metaSuffix: "Borong daripada A TO Z Fesyen Baru, Kenanga Wholesale City, Kuala Lumpur.",
     message: (name: string, url: string) =>
-      `Salam A TO Z Fesyen, saya berminat dengan: ${name}\n${url}\n\nBoleh kongsikan harga, saiz dan warna yang ada?`,
+      `Salam A TO Z Fesyen, saya berminat dengan: ${name}\n${url}\n\nBoleh sahkan stok, saiz dan warna yang ada?`,
     quoteMessage: (name: string, url: string) =>
       `Salam A TO Z Fesyen, saya ingin sebut harga BORONG untuk: ${name}\n${url}\n\nKuantiti: \nSaiz: \nNombor warna: `,
   },
   wholesale: {
     title: "Cara membuat tempahan",
     subtitle:
-      "Tiada minimum tempahan. Beritahu kami apa yang anda mahu dan berapa banyak, dan kita bincang — melalui telefon, mesej, atau bersemuka dengan kain di hadapan anda.",
+      "Minimum tempahan kami ialah satu set setiap rekaan: sehelai bagi setiap saiz. Beritahu kami rekaan dan warna yang anda mahu, dan kita bincang — melalui telefon, mesej, atau bersemuka dengan kain di hadapan anda.",
     termsTitle: "Terma pemborong",
     terms: [
-      { k: "Kuantiti", v: "Tiada minimum. Tempah sehelai atau seratus; campur saiz, warna dan rekaan mengikut jualan kedai anda." },
-      { k: "Harga", v: "Dibincang terus — melalui mesej atau pertemuan. Harga berubah mengikut fabrik, jadi kami lebih suka memberi harga yang jujur daripada mencetak angka yang cepat lapuk." },
+      { k: "Minimum tempahan", v: "Satu set setiap rekaan — sehelai bagi setiap saiz dalam rangkaian (contohnya S, M, L, XL, XXL). Rekaan kanak-kanak: sehelai bagi setiap umur, 4 hingga 16. Tempah seberapa banyak set dan campur warna antara rekaan." },
+      { k: "Harga", v: "Harga borong dan runcit sehelai ada dalam senarai harga kami. Untuk rekaan harga atas permintaan, tanya kami di WhatsApp. Harga berubah mengikut fabrik, jadi harga akhir disahkan dalam invois." },
       { k: "Deposit", v: "30% hingga 50% untuk memulakan tempahan, baki sebelum barang dihantar." },
       { k: "Stok sedia ada", v: "Apa yang ada di lantai kedai boleh dihantar minggu yang sama." },
       { k: "Tempahan baharu", v: "Rekaan baharu dan tempahan khas mengambil 30 hingga 45 hari dari pengesahan." },
@@ -370,7 +408,7 @@ const ms: Dictionary = {
     values: [
       { title: "Fabrik dahulu", text: "Scorpio, China Cotton, Royal Cotton, Marhaba dan Cotton Sulam — dipilih sebelum rekaan." },
       { title: "Warna sama, setiap kali", text: "Kad warna bernombor supaya tempahan semula sepadan dengan stok di rak anda." },
-      { title: "Urusan jujur", text: "Harga diberi terus, setiap tempahan diinvois, peruncit sentiasa dialu-alukan datang." },
+      { title: "Urusan jujur", text: "Harga diterbitkan, setiap tempahan diinvois, peruncit sentiasa dialu-alukan datang." },
     ],
     nextGenTitle: "Kenali generasi seterusnya",
     nextGenName: "Syed Altamash Ali — Ketua Kreatif & Digital",
@@ -411,7 +449,7 @@ const ms: Dictionary = {
     whatsappAhead: "WhatsApp sebelum datang",
     stats: [
       { v: "Sejak 2005", l: "di bangunan yang sama" },
-      { v: "29", l: "rekaan di lantai kedai" },
+      { v: "36", l: "rekaan di lantai kedai" },
       { v: "53+", l: "warna dalam stok" },
       { v: "S – 4XL", l: "lelaki S–4XL, wanita S–3XL, budak 4–16" },
     ],
@@ -446,6 +484,24 @@ const ms: Dictionary = {
     ],
     ctaTitle: "Datang untuk membeli stok?",
     ctaText: "Hantar kod rekaan dan saiz melalui WhatsApp sebelum datang, dan kami akan sediakan semuanya apabila anda tiba.",
+  },
+  prices: {
+    nav: "Senarai harga",
+    title: "Senarai harga",
+    subtitle: "Setiap rekaan mengikut kod, harga sehelai. Borong ialah harga yang anda bayar kepada kami; runcit ialah cadangan harga jualan di kedai.",
+    code: "Kod",
+    design: "Rekaan",
+    wholesale: "Borong",
+    retail: "Runcit",
+    request: "Atas permintaan",
+    preorder: "Pre-order",
+    whitePutih: "Jubbah Putih — setiap rekaan",
+    notes: [
+      "Minimum tempahan ialah satu set setiap rekaan — sehelai bagi setiap saiz.",
+      "Osaka, Cotton Linen dan Kotak Besar dibuat secara pre-order (30–45 hari).",
+      "Harga atas permintaan — tanya kami di WhatsApp. Harga akhir disahkan dalam invois.",
+    ],
+    download: "Minta katalog penuh (PDF) di WhatsApp",
   },
   notFound: {
     title: "Halaman tidak ditemui",

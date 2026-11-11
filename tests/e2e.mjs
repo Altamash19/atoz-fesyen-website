@@ -120,7 +120,7 @@ await test("catalogue search filters results (EN + BM terms, accent/spelling tol
   const { page } = await open(desktop, "/en/products/");
   const count = async () => page.locator('[data-testid="product-card"]').count();
   const all = await count();
-  assert(all === 33, `expected 33 products, got ${all}`);
+  assert(all === 37, `expected 37 products, got ${all}`);
   await page.fill("#catalog-search", "jubbah");
   await page.waitForTimeout(150);
   const jubbah = await count();
@@ -141,7 +141,7 @@ await test("catalogue search filters results (EN + BM terms, accent/spelling tol
   assert((await count()) === 0, "nonsense search should be empty");
   await page.getByRole("button", { name: /clear search/i }).click();
   await page.waitForTimeout(150);
-  assert((await count()) === 33, "clear should restore all");
+  assert((await count()) === 37, "clear should restore all");
   await page.close();
 });
 
@@ -176,7 +176,7 @@ await test("product WhatsApp buttons pre-fill product name and link", async () =
 });
 
 await test("product page has Product + Breadcrumb structured data", async () => {
-  const { page } = await open(desktop, "/en/products/sampin-songket-emas/");
+  const { page } = await open(desktop, "/en/products/sampin-songket-standard/");
   const types = await page.$$eval('script[type="application/ld+json"]', (s) => s.map((x) => JSON.parse(x.textContent)["@type"]));
   assert(types.includes("Product") && types.includes("BreadcrumbList") && types.includes("ClothingStore"), types.join(","));
   await page.close();
@@ -265,6 +265,46 @@ await test("BM hours use Malay day names", async () => {
   await page.close();
 });
 
+await test("prices: product page, cards and price list", async () => {
+  const { page } = await open(desktop, "/en/products/kurta-tiga-butang/");
+  const block = await page.textContent('[data-testid="price-block"]');
+  assert(block.includes("RM 20") && block.includes("RM 27") && block.includes("Wholesale"), block);
+  const types = await page.$$eval('script[type="application/ld+json"]', (s) => s.map((x) => JSON.parse(x.textContent)));
+  const prod = types.find((x) => x["@type"] === "Product");
+  assert(prod.offers && prod.offers.price === 27 && prod.offers.priceCurrency === "MYR", JSON.stringify(prod.offers));
+  await page.goto(BASE + "/en/products/kurta-kotak-besar/");
+  assert((await page.textContent('[data-testid="price-block"]')).includes("Pre-order only"), "K08 pre-order");
+  await page.goto(BASE + "/ms/products/kurta-kosong/");
+  assert((await page.textContent('[data-testid="price-block"]')).includes("Harga atas permintaan"), "K06 on request (BM)");
+  await page.goto(BASE + "/en/products/");
+  const cards = await page.$$eval('[data-testid="card-price"]', (els) => els.map((e) => e.textContent));
+  assert(cards.length === 37 && cards.some((c) => c.includes("RM 60") && c.includes("RRP RM 85")), cards.slice(0, 3).join(" | "));
+  await page.goto(BASE + "/en/prices/");
+  const rows = await page.locator('[data-testid="price-table"] tbody tr').count();
+  assert(rows === 38, `price list rows ${rows}`);
+  const txt = await page.locator("main").textContent();
+  for (const s of ["AZ-S02", "RM 90", "Jubbah Putih", "RM 55", "On request", "Pre-order"]) assert(txt.includes(s), `price list missing ${s}`);
+  await page.close();
+});
+
+await test("options: colour swatches and design letters update the WhatsApp message", async () => {
+  const { page } = await open(desktop, "/en/products/kurung-scorpio/");
+  assert((await page.locator("fieldset button img").count()) === 12, "12 swatch chips");
+  await page.locator("fieldset").getByRole("button", { name: "09 Burgundy" }).click();
+  assert((await page.textContent('[data-testid="shade-name"]')).includes("Burgundy"), "shade label");
+  let msg = decodeURIComponent(new URL(await page.getAttribute('[data-testid="enquire-whatsapp"]', "href")).searchParams.get("text"));
+  assert(msg.includes("AZ-W01") && msg.includes("Shade 09 Burgundy"), msg);
+  await page.locator("fieldset").getByRole("button", { name: "12 Cloud White" }).click();
+  assert((await page.getAttribute('[data-testid="main-photo"]', "src")).includes("az-w01-cw"), "cloud white photo");
+  await page.goto(BASE + "/en/products/jubah-bunga/");
+  await page.waitForFunction(() => window.__HYDRATED__ === true);
+  await page.locator("fieldset").getByRole("button", { name: /^B / }).click();
+  msg = decodeURIComponent(new URL(await page.getAttribute('[data-testid="enquire-whatsapp"]', "href")).searchParams.get("text"));
+  assert(msg.includes("Design B"), msg);
+  assert((await page.getAttribute('[data-testid="main-photo"]', "src")).includes("az-w04-b"), "design B photo");
+  await page.close();
+});
+
 await test("skip link is first focusable element and targets main", async () => {
   const { page } = await open(desktop, "/en/products/");
   await page.keyboard.press("Tab");
@@ -276,7 +316,7 @@ await test("skip link is first focusable element and targets main", async () => 
 await test("sitemap and robots are valid", async () => {
   const sm = await (await fetch(BASE + "/sitemap.xml")).text();
   const n = (sm.match(/<loc>/g) || []).length;
-  assert(n === 86, `sitemap urls ${n}`);
+  assert(n === 96, `sitemap urls ${n}`);
   const rb = await (await fetch(BASE + "/robots.txt")).text();
   assert(rb.includes("Sitemap: https://altamash19.github.io/atoz-fesyen-website/sitemap.xml"), rb);
 });
