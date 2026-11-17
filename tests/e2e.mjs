@@ -120,7 +120,7 @@ await test("catalogue search filters results (EN + BM terms, accent/spelling tol
   const { page } = await open(desktop, "/en/products/");
   const count = async () => page.locator('[data-testid="product-card"]').count();
   const all = await count();
-  assert(all === 37, `expected 37 products, got ${all}`);
+  assert(all === 35, `expected 35 products, got ${all}`);
   await page.fill("#catalog-search", "jubbah");
   await page.waitForTimeout(150);
   const jubbah = await count();
@@ -141,7 +141,7 @@ await test("catalogue search filters results (EN + BM terms, accent/spelling tol
   assert((await count()) === 0, "nonsense search should be empty");
   await page.getByRole("button", { name: /clear search/i }).click();
   await page.waitForTimeout(150);
-  assert((await count()) === 37, "clear should restore all");
+  assert((await count()) === 35, "clear should restore all");
   await page.close();
 });
 
@@ -278,10 +278,10 @@ await test("prices: product page, cards and price list", async () => {
   assert((await page.textContent('[data-testid="price-block"]')).includes("Harga atas permintaan"), "K06 on request (BM)");
   await page.goto(BASE + "/en/products/");
   const cards = await page.$$eval('[data-testid="card-price"]', (els) => els.map((e) => e.textContent));
-  assert(cards.length === 37 && cards.some((c) => c.includes("RM 60") && c.includes("RRP RM 85")), cards.slice(0, 3).join(" | "));
+  assert(cards.length === 35 && cards.some((c) => c.includes("RM 60") && c.includes("RRP RM 85")), cards.slice(0, 3).join(" | "));
   await page.goto(BASE + "/en/prices/");
   const rows = await page.locator('[data-testid="price-table"] tbody tr').count();
-  assert(rows === 38, `price list rows ${rows}`);
+  assert(rows === 36, `price list rows ${rows}`);
   const txt = await page.locator("main").textContent();
   for (const s of ["AZ-S02", "RM 90", "Jubbah Putih", "RM 55", "On request", "Pre-order"]) assert(txt.includes(s), `price list missing ${s}`);
   await page.close();
@@ -316,7 +316,7 @@ await test("skip link is first focusable element and targets main", async () => 
 await test("sitemap and robots are valid", async () => {
   const sm = await (await fetch(BASE + "/sitemap.xml")).text();
   const n = (sm.match(/<loc>/g) || []).length;
-  assert(n === 96, `sitemap urls ${n}`);
+  assert(n === 92, `sitemap urls ${n}`);
   const rb = await (await fetch(BASE + "/robots.txt")).text();
   assert(rb.includes("Sitemap: https://altamash19.github.io/atoz-fesyen-website/sitemap.xml"), rb);
 });

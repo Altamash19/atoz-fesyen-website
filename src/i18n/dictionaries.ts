@@ -193,7 +193,7 @@ const en = {
     whatsappAhead: "WhatsApp before you come",
     stats: [
       { v: "Since 2005", l: "in the same building" },
-      { v: "36", l: "designs on the floor" },
+      { v: "34", l: "designs on the floor" },
       { v: "53+", l: "colourways in stock" },
       { v: "S – 4XL", l: "men S–4XL, ladies S–3XL, kids 4–16" },
     ],
@@ -201,7 +201,7 @@ const en = {
     tourTitle: "What you'll find inside",
     tour: [
       { img: "shop-front-2", title: "The front", text: "Look for the ATOZ sign at Lot 20. Mannequins at the door wear the season's colours — baju Melayu with sampin, ladies kurung, boys' kurta." },
-      { img: "shop-kurta-wall", title: "The kurta wall", text: "Long rails of kurta hung by colour, plain, checked and striped, so you can build a size run shade by shade." },
+      { img: "shop-kurta-wall", title: "The kurta wall", text: "Long rails of kurta hung by colour, plain and checked, so you can build a size run shade by shade." },
       { img: "shop-ladies", title: "Ladies & jubbah", text: "Baju kurung sets, printed jubah and men's jubbah from black to bottle green — the ranges in the catalogue, all on hangers." },
       { img: "shop-stockroom", title: "The stockroom", text: "Behind the floor, cloth is stacked by colour card. This depth is why a reorder months later returns the same shade." },
       { img: "shop-cashier", title: "Cashier & fitting", text: "Every order is invoiced here with design codes and colours. A full-length mirror if you want to see the fit for yourself." },
@@ -449,7 +449,7 @@ const ms: Dictionary = {
     whatsappAhead: "WhatsApp sebelum datang",
     stats: [
       { v: "Sejak 2005", l: "di bangunan yang sama" },
-      { v: "36", l: "rekaan di lantai kedai" },
+      { v: "34", l: "rekaan di lantai kedai" },
       { v: "53+", l: "warna dalam stok" },
       { v: "S – 4XL", l: "lelaki S–4XL, wanita S–3XL, budak 4–16" },
     ],
@@ -457,7 +457,7 @@ const ms: Dictionary = {
     tourTitle: "Apa yang ada di dalam",
     tour: [
       { img: "shop-front-2", title: "Pintu masuk", text: "Cari papan tanda ATOZ di Lot 20. Patung di pintu memakai warna musim ini — baju Melayu bersampin, baju kurung dan kurta budak." },
-      { img: "shop-kurta-wall", title: "Dinding kurta", text: "Rak panjang kurta disusun mengikut warna — kosong, kotak dan jalur — supaya anda boleh lengkapkan set saiz warna demi warna." },
+      { img: "shop-kurta-wall", title: "Dinding kurta", text: "Rak panjang kurta disusun mengikut warna — kosong dan kotak — supaya anda boleh lengkapkan set saiz warna demi warna." },
       { img: "shop-ladies", title: "Wanita & jubah", text: "Set baju kurung, jubah bercorak dan jubah lelaki dari hitam hingga hijau botol — semua rangkaian dalam katalog, tergantung siap." },
       { img: "shop-stockroom", title: "Stor", text: "Di belakang kedai, kain disusun mengikut kad warna. Inilah sebabnya tempahan semula berbulan kemudian tetap mendapat warna yang sama." },
       { img: "shop-cashier", title: "Kaunter & cermin", text: "Setiap tempahan diinvois di sini dengan kod rekaan dan warna. Ada cermin penuh jika anda mahu lihat potongannya sendiri." },

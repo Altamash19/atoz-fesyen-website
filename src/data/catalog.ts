@@ -147,10 +147,10 @@ export const collections: Collection[] = [
     id: "kurta-bercorak",
     category: "men",
     silhouette: "kurta",
-    name: L("Plain, Stripe & Check Kurta", "Kurta Kosong, Jalur & Kotak"),
+    name: L("Plain & Check Kurta", "Kurta Kosong & Kotak"),
     description: L(
-      "Plain cotton plus stripe and check in the Checkered weave. Men buy these for Friday prayers and for work, so they sell all year — not only at Raya.",
-      "Kain kosong serta jalur dan kotak dalam tenunan Checkered. Dibeli untuk solat Jumaat dan ke tempat kerja, jadi laku sepanjang tahun — bukan hanya musim Raya.",
+      "Plain cotton plus check in the Checkered weave. Men buy these for Friday prayers and for work, so they sell all year — not only at Raya.",
+      "Kain kosong serta corak kotak dalam tenunan Checkered. Dibeli untuk solat Jumaat dan ke tempat kerja, jadi laku sepanjang tahun — bukan hanya musim Raya.",
     ),
   },
   {
@@ -317,7 +317,7 @@ export const products: Product[] = [
     ),
     fabric: "Crepe", sizes: menSizes, images: ["az-k05-info", "az-k05", "az-k05-closeup"], cover: "az-k05-closeup",
   },
-  // ── Kurta Bercorak (AZ-K06 – K10) ───────────────────────────
+  // ── Kurta Bercorak (AZ-K06, K08, K09) ───────────────────────────
   {
     slug: "kurta-kosong", code: "AZ-K06", collection: "kurta-bercorak", name: "Kurta Kosong",
     priceStatus: "request",
@@ -330,22 +330,12 @@ export const products: Product[] = [
     bestseller: 3, bestsellerNote: L("Forty colours — the safe reorder.", "Empat puluh warna — tempahan semula yang selamat."),
   },
   {
-    slug: "kurta-berjalur", code: "AZ-K07", collection: "kurta-bercorak", name: "Kurta Berjalur",
-    priceStatus: "request",
-    tagline: L("Woven satin stripe", "Jalur satin tenun"),
-    description: L(
-      "Woven satin stripe running the length of the body, matched at the placket. Thirty grounds.",
-      "Jalur satin tenun sepanjang badan, dipadankan di plaket. Tiga puluh warna dasar.",
-    ),
-    fabric: "Woven stripe", sizes: menSizes, colours: colours(30), images: ["az-k07"],
-  },
-  {
     slug: "kurta-kotak-besar", code: "AZ-K08", collection: "kurta-bercorak", name: "Kurta Kotak Besar",
     priceStatus: "preorder",
     tagline: L("Wide windowpane check", "Kotak besar windowpane"),
     description: L(
-      "A wide windowpane check in the Checkered weave — the quietest of the three check scales. Made to pre-order only.",
-      "Corak kotak besar windowpane dalam tenunan Checkered — paling lembut antara tiga saiz kotak. Tempahan awal (pre-order) sahaja.",
+      "A wide windowpane check in the Checkered weave — the quieter of our two check scales. Made to pre-order only.",
+      "Corak kotak besar windowpane dalam tenunan Checkered — lebih lembut antara dua saiz kotak kami. Tempahan awal (pre-order) sahaja.",
     ),
     fabric: "Checkered", sizes: menSizes, colours: colours(15), images: ["az-k08"],
   },
@@ -355,14 +345,7 @@ export const products: Product[] = [
     tagline: L("Fine gingham check", "Kotak kecil gingham"),
     description: L("Fine gingham check in the Checkered weave, fourteen grounds.", "Kotak kecil gingham dalam tenunan Checkered, empat belas warna dasar."),
     fabric: "Checkered", sizes: menSizes, colours: colours(14), images: ["az-k09"],
-    bestseller: 2, bestsellerNote: L("Check and stripe for Friday and for work — moves all year.", "Kotak dan jalur untuk Jumaat dan kerja — laku sepanjang tahun."),
-  },
-  {
-    slug: "kurta-kotak-plaid", code: "AZ-K10", collection: "kurta-bercorak", name: "Kurta Kotak Plaid",
-    price: P(24, 35),
-    tagline: L("Madras-scale plaid", "Plaid saiz Madras"),
-    description: L("Madras-scale plaid in the Checkered weave, sixteen grounds.", "Plaid saiz Madras dalam tenunan Checkered, enam belas warna dasar."),
-    fabric: "Checkered", sizes: menSizes, colours: colours(16), images: ["az-k10"],
+    bestseller: 2, bestsellerNote: L("Check for Friday and for work — moves all year.", "Corak kotak untuk Jumaat dan kerja — laku sepanjang tahun."),
   },
   // ── Jubah Lelaki (AZ-J01 – J03) ─────────────────────────────
   {
